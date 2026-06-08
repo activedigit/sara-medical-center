@@ -1,0 +1,78 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Heading from '@components/ui/Heading.astro';
+import Card from '@components/ui/Card.astro';
+import ContactForm from '@components/forms/ContactForm.astro';
+import FormSuccess from '@components/forms/FormSuccess.astro';
+import GoogleMap from '@components/map/GoogleMap.astro';
+import Icon from '@components/ui/Icon.astro';
+import { useTranslations } from '@i18n/utils';
+import { SITE } from '~/config/site';
+
+const lang = 'ar';
+const t = useTranslations(lang);
+const success = Astro.url.searchParams.get('success') === '1';
+---
+<PageLayout title={t('nav.contact')} description={t('contact.sectionSubtitle')}>
+  <section class="bg-navy text-white">
+    <div class="container max-w-[1280px] py-12 md:py-16">
+      <Heading level={1} size="xl" eyebrow={t('nav.contact')} subtitle={t('contact.sectionSubtitle')} align="start">
+        {t('contact.sectionTitle')}
+      </Heading>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container max-w-[1280px]">
+      {success && <div class="mb-10"><FormSuccess lang={lang} /></div>}
+
+      <div class="grid lg:grid-cols-5 gap-8">
+        <div class="lg:col-span-3 space-y-4">
+          <Card variant="default" padding="lg">
+            <h2 class="text-xl font-bold text-navy mb-2">{t('contact.formHeading')}</h2>
+            <p class="text-sm text-ink-muted mb-6">{t('contact.formDescription')}</p>
+            <ContactForm lang={lang} />
+          </Card>
+        </div>
+
+        <div class="lg:col-span-2 space-y-4">
+          <Card variant="default" padding="lg">
+            <div class="space-y-4">
+              <div class="flex items-start gap-3">
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-accent-emergency/10 text-accent-emergency flex-shrink-0">
+                  <Icon name="phone" size={20} />
+                </span>
+                <div>
+                  <p class="font-bold text-navy text-sm">{t('contact.phoneHeading')}</p>
+                  <a href={SITE.phone.tel} class="text-lg font-bold text-navy hover:text-teal-700" dir="ltr">{SITE.phone.display}</a>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-navy/5 text-navy flex-shrink-0">
+                  <Icon name="map-pin" size={20} />
+                </span>
+                <div>
+                  <p class="font-bold text-navy text-sm">{t('contact.addressHeading')}</p>
+                  <p class="text-ink leading-relaxed">{SITE.address[lang]}</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-navy/5 text-navy flex-shrink-0">
+                  <Icon name="mail" size={20} />
+                </span>
+                <div>
+                  <p class="font-bold text-navy text-sm">{t('contact.emailHeading')}</p>
+                  <a href={`mailto:${SITE.email}`} class="text-ink hover:text-navy" dir="ltr">{SITE.email}</a>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          <div class="rounded-2xl overflow-hidden shadow-card">
+            <GoogleMap lang={lang} height="320px" rounded={false} />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</PageLayout>

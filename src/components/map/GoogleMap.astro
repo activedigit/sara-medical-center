@@ -1,0 +1,70 @@
+---
+import { SITE } from '~/config/site';
+import { useTranslations, type LanguageCode } from '@i18n/utils';
+import Icon from '@components/ui/Icon.astro';
+
+interface Props {
+  lang: LanguageCode;
+  height?: string;
+  rounded?: boolean;
+}
+const { lang, height = '420px', rounded = true } = Astro.props;
+const t = useTranslations(lang);
+const { latitude, longitude } = SITE.geo;
+const mapsLink = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
+const wazeLink = `https://www.waze.com/ul?ll=${latitude},${longitude}&navigate=yes`;
+---
+<div class:list={['relative bg-surface-tint overflow-hidden', rounded && 'rounded-2xl']} style={`min-height:${height}`}>
+  <div class="absolute inset-0" data-map-target>
+    <div class="flex flex-col items-center justify-center h-full gap-3 text-center p-6">
+      <Icon name="map-pin" size={40} class="text-navy/40" />
+      <p class="text-sm text-ink-muted">{lang === 'ar' ? 'جارٍ تحميل الخريطة…' : lang === 'he' ? 'טוען מפה…' : 'Loading map…'}</p>
+    </div>
+  </div>
+  <div class="absolute bottom-3 end-3 flex gap-2 z-10">
+    <a
+      href={mapsLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-1.5 bg-white shadow-card text-navy text-xs font-semibold px-3 py-2 rounded-lg hover:bg-navy hover:text-white transition-colors"
+    >
+      <Icon name="arrow-end" size={14} />
+      <span>{t('hours.directions')}</span>
+    </a>
+    <a
+      href={wazeLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-1.5 bg-[#33CCFF] text-white text-xs font-semibold px-3 py-2 rounded-lg hover:bg-[#1AA0CC] transition-colors"
+    >
+      Waze
+    </a>
+  </div>
+</div>
+
+<script define:vars={{ latitude, longitude }}>
+  const target = document.querySelector('[data-map-target]');
+  if (target) {
+    const load = () => {
+      const iframe = document.createElement('iframe');
+      iframe.title = 'Sarah Medical Center location';
+      iframe.src = `https://www.google.com/maps?q=${latitude},${longitude}&z=16&output=embed`;
+      iframe.loading = 'lazy';
+      iframe.referrerPolicy = 'no-referrer-when-downgrade';
+      iframe.allowFullscreen = true;
+      iframe.style.cssText = 'width:100%;height:100%;border:0;display:block';
+      target.replaceChildren(iframe);
+    };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          io.disconnect();
+          load();
+        }
+      }, { rootMargin: '200px' });
+      io.observe(target);
+    } else {
+      load();
+    }
+  }
+</script>

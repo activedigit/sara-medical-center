@@ -1,0 +1,36 @@
+{
+  "slug": "nazik-kareem",
+  "order": 3,
+  "featured": true,
+  "name": {
+    "ar": "د. نازك كريم",
+    "he": "ד״ר נאזק כרים",
+    "en": "Dr. Nazik Kareem"
+  },
+  "specialty": {
+    "ar": "مختصة في طب النساء",
+    "he": "מומחית בגינקולוגיה",
+    "en": "Gynecology Specialist"
+  },
+  "shortBio": {
+    "ar": "طبيبة نساء بخبرة واسعة، تعمل ضمن عيادة الإنجليزي للحمل والولادة.",
+    "he": "רופאת נשים בעלת ניסיון רב, עובדת במסגרת מרפאת האנגלי להריון ולידה.",
+    "en": "Experienced gynecologist working within the English Clinic for Pregnancy & Childbirth."
+  },
+  "longBio": {
+    "ar": "د. نازك كريم طبيبة نساء بخبرة واسعة، تقدم خدمات شاملة لصحة المرأة ضمن عيادة الإنجليزي. تستقبل النساء أيام الخميس مجاناً، بمختلف الصناديق الصحية.",
+    "he": "ד״ר נאזק כרים היא רופאת נשים בעלת ניסיון רב, מספקת שירותי בריאות מקיפים לנשים במסגרת מרפאת האנגלי. מקבלת נשים בימי חמישי חינם, מכל קופות החולים.",
+    "en": "Dr. Nazik Kareem is an experienced gynecologist providing comprehensive women's health services within the English Clinic. She serves women on Thursdays free of charge, regardless of health fund."
+  },
+  "credentials": [
+    "MD — Gynecology",
+    "English Clinic — Nazareth English Hospital"
+  ],
+  "languages": ["ar", "he", "en"],
+  "services": ["womens-health"],
+  "schedule": {
+    "ar": "أيام الخميس 12:30 - 15:30",
+    "he": "ימי חמישי 12:30 - 15:30",
+    "en": "Thursdays 12:30 - 15:30"
+  }
+}

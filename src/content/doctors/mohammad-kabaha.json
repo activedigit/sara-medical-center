@@ -1,0 +1,39 @@
+{
+  "slug": "mohammad-kabaha",
+  "order": 1,
+  "featured": true,
+  "photo": "/images/doctors/mohammad-kabaha.png",
+  "portraitAlt": "د. محمد كبها - مدير مركز سارة الطبي",
+  "name": {
+    "ar": "د. محمد كبها",
+    "he": "ד״ר מוחמד קבהא",
+    "en": "Dr. Mohammad Kabaha"
+  },
+  "specialty": {
+    "ar": "مختص طب أطفال — مدير المركز",
+    "he": "מומחה ברפואת ילדים — מנהל המרכז",
+    "en": "Pediatrics Specialist — Center Director"
+  },
+  "shortBio": {
+    "ar": "مدير الطب الأطفالي في מאוחדת الشمال، ومدير مركز سارة الطبي.",
+    "he": "מנהל הרפואה הילדית במאוחדת צפון ומנהל מרכז שארה הרפואי.",
+    "en": "Director of Pediatric Medicine at Meuhedet North and Director of Sarah Medical Center."
+  },
+  "longBio": {
+    "ar": "د. محمد كبها هو مدير مركز سارة الطبي، ومختص طب أطفال بخبرة واسعة. يشغل أيضاً منصب مدير الطب الأطفالي في מאוחדת الشمال. يقود طاقماً متعدد التخصصات، ويلتزم بتقديم رعاية صحية بمعايير مهنية وإنسانية عالية لجميع أبناء أم الفحم والمنطقة.",
+    "he": "ד״ר מוחמד קבהא הוא מנהל מרכז שארה הרפואי ומומחה ברפואת ילדים בעל ניסיון רב. הוא משמש גם כמנהל הרפואה הילדית במאוחדת צפון. הוא מוביל צוות רב-תחומי ומחויב לספק טיפול רפואי בסטנדרטים מקצועיים וערכיים גבוהים לכל תושבי אום אל-פחם והאזור.",
+    "en": "Dr. Mohammad Kabaha is the Director of Sarah Medical Center and a pediatrics specialist with extensive experience. He also serves as Director of Pediatric Medicine at Meuhedet North. He leads a multidisciplinary team and is committed to providing healthcare to the highest professional and human standards for all residents of Umm al-Fahm and the region."
+  },
+  "credentials": [
+    "MD — Pediatrics",
+    "Director — Sarah Medical Center",
+    "Director of Pediatric Medicine — Meuhedet North"
+  ],
+  "languages": ["ar", "he", "en"],
+  "services": ["pediatrics", "emergency"],
+  "schedule": {
+    "ar": "حسب الموعد",
+    "he": "לפי תור",
+    "en": "By appointment"
+  }
+}

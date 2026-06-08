@@ -1,0 +1,43 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'default' | 'elevated' | 'outline' | 'tint';
+  padding?: 'sm' | 'md' | 'lg';
+  hoverable?: boolean;
+  class?: string;
+}
+const {
+  href,
+  variant = 'default',
+  padding = 'md',
+  hoverable = false,
+  class: className = '',
+} = Astro.props;
+
+const variants = {
+  default: 'bg-white shadow-card',
+  elevated: 'bg-white shadow-floating',
+  outline: 'bg-white border-2 border-surface-tint',
+  tint: 'bg-surface-tint',
+};
+
+const paddings = {
+  sm: 'p-4',
+  md: 'p-6',
+  lg: 'p-8 md:p-10',
+};
+
+const classes = [
+  'rounded-2xl',
+  variants[variant],
+  paddings[padding],
+  (hoverable || href) && 'card-hover',
+  className,
+];
+
+const Tag = href ? 'a' : 'div';
+const attrs = href ? { href } : {};
+---
+<Tag class:list={classes} {...attrs}>
+  <slot />
+</Tag>

@@ -1,0 +1,43 @@
+---
+import type { LanguageCode } from '@i18n/utils';
+import { useTranslations } from '@i18n/utils';
+import Icon from '@components/ui/Icon.astro';
+
+interface Props {
+  lang: LanguageCode;
+  page: { current: number; total: number; size: number };
+  urls: { prev?: string; next?: string };
+  basePath: string;
+}
+const { lang, page, urls, basePath } = Astro.props;
+const t = useTranslations(lang);
+---
+{page.total > 1 && (
+  <nav aria-label="pagination" class="flex items-center justify-center gap-2 mt-10">
+    {urls.prev ? (
+      <a href={urls.prev} class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white border border-surface-tint hover:bg-surface-alt text-navy text-sm font-semibold">
+        <Icon name="arrow-end" size={14} class="rotate-180 icon-flip-rtl" />
+        {t('news.previous')}
+      </a>
+    ) : (
+      <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-surface-alt text-ink-subtle text-sm font-semibold opacity-50">
+        <Icon name="arrow-end" size={14} class="rotate-180 icon-flip-rtl" />
+        {t('news.previous')}
+      </span>
+    )}
+
+    <span class="px-3 text-sm text-ink-muted">{t('news.page')} {page.current} / {page.total}</span>
+
+    {urls.next ? (
+      <a href={urls.next} class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white border border-surface-tint hover:bg-surface-alt text-navy text-sm font-semibold">
+        {t('news.next')}
+        <Icon name="arrow-end" size={14} />
+      </a>
+    ) : (
+      <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-surface-alt text-ink-subtle text-sm font-semibold opacity-50">
+        {t('news.next')}
+        <Icon name="arrow-end" size={14} />
+      </span>
+    )}
+  </nav>
+)}

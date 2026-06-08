@@ -1,0 +1,28 @@
+---
+import { useTranslations, type LanguageCode } from '@i18n/utils';
+import { SITE } from '~/config/site';
+import Card from '@components/ui/Card.astro';
+import Button from '@components/ui/Button.astro';
+import Icon from '@components/ui/Icon.astro';
+
+interface Props { lang: LanguageCode; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+<Card variant="default" padding="lg" class="text-center max-w-xl mx-auto border-2 border-accent-success/20">
+  <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent-success/10 text-accent-success mb-4">
+    <Icon name="check" size={32} />
+  </div>
+  <h2 class="text-2xl font-bold text-navy mb-2">{t('forms.successTitle')}</h2>
+  <p class="text-ink-muted">{t('forms.successMessage')}</p>
+  <div class="mt-6 flex flex-wrap justify-center gap-3">
+    <Button variant="primary" href={`/${lang}/`}>
+      <Icon name="arrow-end" size={16} class="rotate-180 icon-flip-rtl" />
+      {t('errors.backHome')}
+    </Button>
+    <Button variant="outline" href={SITE.phone.tel}>
+      <Icon name="phone" size={16} />
+      <span dir="ltr">{SITE.phone.display}</span>
+    </Button>
+  </div>
+</Card>

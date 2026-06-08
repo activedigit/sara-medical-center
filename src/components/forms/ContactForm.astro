@@ -1,0 +1,74 @@
+---
+import { useTranslations, type LanguageCode } from '@i18n/utils';
+import { SITE } from '~/config/site';
+import FormField from './FormField.astro';
+import Button from '@components/ui/Button.astro';
+import Icon from '@components/ui/Icon.astro';
+
+interface Props { lang: LanguageCode; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+<form
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  action={`/${lang}/contact?success=1`}
+  class="space-y-5"
+  data-contact-form
+>
+  <input type="hidden" name="form-name" value="contact" />
+  <p class="hidden">
+    <label>{t('forms.required')} <input name="bot-field" /></label>
+  </p>
+
+  <div class="grid sm:grid-cols-2 gap-4">
+    <FormField name="name" label={t('forms.name')} required={true} autocomplete="name" />
+    <FormField name="phone" label={t('forms.phone')} type="tel" required={true} autocomplete="tel" dir="ltr" />
+  </div>
+  <FormField name="email" label={t('forms.email')} type="email" autocomplete="email" dir="ltr" />
+  <FormField name="subject" label={t('forms.subject')} />
+  <FormField name="message" label={t('forms.message')} type="textarea" required={true} rows={5} />
+
+  <label class="flex items-start gap-2 text-sm text-ink-muted cursor-pointer">
+    <input type="checkbox" name="consent" required class="mt-1 w-4 h-4 rounded border-surface-tint text-navy focus:ring-navy/20" />
+    <span>{t('forms.privacyConsent')}</span>
+  </label>
+
+  <div class="flex flex-col sm:flex-row gap-3">
+    <Button type="submit" variant="primary" size="lg" fullWidth={true}>
+      <Icon name="mail" size={18} />
+      {t('forms.submit')}
+    </Button>
+    <span class="self-center text-ink-subtle text-sm">{t('forms.or')}</span>
+    <Button variant="whatsapp" size="lg" fullWidth={true} data-whatsapp-trigger>
+      <Icon name="whatsapp" size={18} />
+      {t('forms.sendWhatsapp')}
+    </Button>
+  </div>
+</form>
+
+<script define:vars={{ waBase: SITE.whatsapp.link, lang }}>
+  const form = document.querySelector('[data-contact-form]');
+  const waBtn = form?.querySelector('[data-whatsapp-trigger]');
+  if (form && waBtn) {
+    waBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const fields = ['name', 'phone', 'email', 'subject', 'message'];
+      const labels = {
+        ar: { title: 'استفسار جديد', name: 'الاسم', phone: 'الهاتف', email: 'البريد', subject: 'الموضوع', message: 'الرسالة' },
+        he: { title: 'פנייה חדשה', name: 'שם', phone: 'טלפון', email: 'דוא״ל', subject: 'נושא', message: 'הודעה' },
+        en: { title: 'New inquiry', name: 'Name', phone: 'Phone', email: 'Email', subject: 'Subject', message: 'Message' },
+      }[lang];
+      const lines = [`*${labels.title}*`];
+      fields.forEach((f) => {
+        const v = (data.get(f) || '').toString().trim();
+        if (v) lines.push(`${labels[f]}: ${v}`);
+      });
+      const text = lines.length > 1 ? lines.join('\n') : labels.title;
+      window.open(`${waBase}?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+    });
+  }
+</script>

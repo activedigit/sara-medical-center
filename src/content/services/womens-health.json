@@ -1,0 +1,38 @@
+{
+  "slug": "womens-health",
+  "icon": "heart",
+  "order": 3,
+  "featured": true,
+  "title": {
+    "ar": "عيادة الإنجليزي للحمل والولادة",
+    "he": "מרפאת האנגלי להריון ולידה",
+    "en": "English Clinic — Pregnancy & Women's Health"
+  },
+  "shortDescription": {
+    "ar": "خدمات نسائية شاملة مجاناً لجميع النساء — كل خميس.",
+    "he": "שירותי נשים מקיפים חינם לכל הנשים — כל יום חמישי.",
+    "en": "Comprehensive women's services — free for all women, every Thursday."
+  },
+  "longDescription": {
+    "ar": "بالشراكة مع مستشفى الإنجليزي في الناصرة، نوفر خدمات متابعة الحمل، الحمل الخطر، سكري الحمل، دورات تحضير للولادة، استشارات رضاعة، ونصائح تغذية وحركة. مجاناً لجميع النساء بمختلف الصناديق - بأعلى معايير المهنية والإنسانية.",
+    "he": "בשותפות עם בית החולים האנגלי בנצרת, אנו מספקים שירותי מעקב הריון, הריון בסיכון, סוכרת הריון, קורסי הכנה ללידה, ייעוץ הנקה והדרכת תזונה. חינם לכל הנשים מכל הקופות — בסטנדרטים המקצועיים והאנושיים הגבוהים ביותר.",
+    "en": "In partnership with the English Hospital in Nazareth, we provide pregnancy monitoring, high-risk pregnancy care, gestational diabetes management, childbirth preparation courses, lactation consulting, and nutrition/exercise guidance. Free of charge for all women, regardless of insurance — to the highest professional and human standards."
+  },
+  "hours": {
+    "ar": "أيام الخميس 12:30 - 15:30",
+    "he": "ימי חמישי 12:30 - 15:30",
+    "en": "Thursdays 12:30 - 15:30"
+  },
+  "features": [
+    { "ar": "متابعة الحمل العادي", "he": "מעקב הריון", "en": "Pregnancy monitoring" },
+    { "ar": "متابعة الحمل الخطر", "he": "מעקב הריון בסיכון", "en": "High-risk pregnancy care" },
+    { "ar": "متابعة سكري الحمل", "he": "מעקב סוכרת הריון", "en": "Gestational diabetes follow-up" },
+    { "ar": "دورات تحضير للولادة", "he": "קורסי הכנה ללידה", "en": "Childbirth preparation courses" },
+    { "ar": "استشارات الرضاعة الطبيعية", "he": "ייעוץ הנקה", "en": "Lactation consultations" },
+    { "ar": "ورشات رياضة للحوامل", "he": "סדנאות תנועה להריון", "en": "Pregnancy exercise workshops" },
+    { "ar": "إرشاد تغذية", "he": "הדרכת תזונה", "en": "Nutrition guidance" },
+    { "ar": "دعم نفسي وعاطفي", "he": "תמיכה רגשית", "en": "Emotional support" }
+  ],
+  "relatedDoctors": ["mona-egbariah", "nazik-kareem", "iman-daher"],
+  "free": true
+}

@@ -1,0 +1,36 @@
+{
+  "slug": "iman-daher",
+  "order": 4,
+  "featured": false,
+  "name": {
+    "ar": "القابلة إيمان ضاهر",
+    "he": "המיילדת אימאן דאהר",
+    "en": "Midwife Iman Daher"
+  },
+  "specialty": {
+    "ar": "قابلة ومرشدة رضاعة",
+    "he": "מיילדת ויועצת הנקה",
+    "en": "Midwife & Lactation Consultant"
+  },
+  "shortBio": {
+    "ar": "قابلة بخبرة في متابعة الحمل والولادة واستشارات الرضاعة الطبيعية.",
+    "he": "מיילדת בעלת ניסיון במעקב הריון ולידה וייעוץ הנקה.",
+    "en": "Experienced midwife specializing in pregnancy, childbirth, and lactation consulting."
+  },
+  "longBio": {
+    "ar": "القابلة إيمان ضاهر عضو في فريق عيادة الإنجليزي للحمل والولادة. تقدم متابعة للحوامل، تنظم دورات تحضير للولادة وورشات رياضة، وتوفر استشارات رضاعة طبيعية للأمهات الجدد.",
+    "he": "המיילדת אימאן דאהר חברה בצוות מרפאת האנגלי להריון ולידה. היא מספקת מעקב להריונות, מארגנת קורסי הכנה ללידה וסדנאות תנועה, ומעניקה ייעוץ הנקה לאמהות טריות.",
+    "en": "Midwife Iman Daher is a member of the English Clinic for Pregnancy & Childbirth team. She provides pregnancy monitoring, organizes childbirth preparation courses and exercise workshops, and offers lactation consultations for new mothers."
+  },
+  "credentials": [
+    "Certified Midwife",
+    "Lactation Consultant"
+  ],
+  "languages": ["ar", "he", "en"],
+  "services": ["womens-health"],
+  "schedule": {
+    "ar": "أيام الخميس 12:30 - 15:30",
+    "he": "ימי חמישי 12:30 - 15:30",
+    "en": "Thursdays 12:30 - 15:30"
+  }
+}

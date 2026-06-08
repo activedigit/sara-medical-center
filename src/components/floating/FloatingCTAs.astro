@@ -1,0 +1,40 @@
+---
+import { useTranslations, type LanguageCode } from '@i18n/utils';
+import { SITE } from '~/config/site';
+import Icon from '@components/ui/Icon.astro';
+
+interface Props { lang: LanguageCode; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const waText = lang === 'ar'
+  ? 'مرحباً، أرغب في الاستفسار عن خدمات مركز سارة الطبي'
+  : lang === 'he'
+    ? 'שלום, אני מעוניין לברר על השירותים של מרכז שארה'
+    : 'Hello, I would like to inquire about Sarah Medical Center services';
+const waLink = `${SITE.whatsapp.link}?text=${encodeURIComponent(waText)}`;
+---
+<div class="hidden md:flex fixed bottom-6 end-6 z-40 flex-col gap-3" aria-label="Quick contact">
+  <a
+    href={waLink}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="relative group inline-flex items-center justify-center w-14 h-14 rounded-full bg-accent-whatsapp text-white shadow-floating hover:scale-105 transition-transform"
+    aria-label={t('common.whatsapp')}
+  >
+    <span class="absolute inset-0 rounded-full bg-accent-whatsapp/40 animate-pulseRing" aria-hidden="true"></span>
+    <Icon name="whatsapp" size={28} />
+    <span class="absolute end-full me-3 top-1/2 -translate-y-1/2 bg-navy text-white text-sm font-medium px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+      {t('common.whatsapp')}
+    </span>
+  </a>
+  <a
+    href={SITE.phone.tel}
+    class="relative group inline-flex items-center justify-center w-14 h-14 rounded-full bg-accent-emergency text-white shadow-floating hover:scale-105 transition-transform"
+    aria-label={`${t('common.callNow')} ${SITE.phone.display}`}
+  >
+    <Icon name="phone" size={26} />
+    <span class="absolute end-full me-3 top-1/2 -translate-y-1/2 bg-navy text-white text-sm font-medium px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+      {t('common.callNow')}
+    </span>
+  </a>
+</div>

@@ -1,0 +1,38 @@
+# build output
+dist/
+.output/
+.vercel/
+.netlify/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+.env.local
+
+# editor / OS
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# astro
+.astro/
+
+# Claude Code local data
+.claude/
+
+# raw working assets (originals; optimized copies live in public/)
+PIC/
+assets-original/
+/logo sara.jpg
+

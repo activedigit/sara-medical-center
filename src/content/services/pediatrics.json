@@ -1,0 +1,30 @@
+{
+  "slug": "pediatrics",
+  "icon": "baby",
+  "order": 2,
+  "featured": true,
+  "title": {
+    "ar": "طب الأطفال",
+    "he": "רפואת ילדים",
+    "en": "Pediatrics"
+  },
+  "shortDescription": {
+    "ar": "عيادة أطفال متكاملة بإدارة د. محمد كبها — مختص أطفال.",
+    "he": "מרפאת ילדים מקיפה בניהול ד״ר מוחמד קבהא — מומחה ברפואת ילדים.",
+    "en": "Comprehensive pediatric clinic led by Dr. Mohammad Kabaha — Pediatrics specialist."
+  },
+  "longDescription": {
+    "ar": "عيادة أطفال متخصصة بإدارة د. محمد كبها — مدير الطب الأطفالي في מאוחדת الشمال. نقدم رعاية شاملة من الرضاعة حتى المراهقة، تطعيمات، علاج الأمراض الشائعة، ومتابعة النمو والتطور.",
+    "he": "מרפאת ילדים מומחית בניהול ד״ר מוחמד קבהא — מנהל הרפואה הילדית במאוחדת צפון. אנו מספקים טיפול מקיף משלב התינוקות ועד גיל ההתבגרות, חיסונים, טיפול במחלות נפוצות ומעקב גדילה והתפתחות.",
+    "en": "Specialized pediatric clinic directed by Dr. Mohammad Kabaha — Director of Pediatric Medicine at Meuhedet North. We offer comprehensive care from infancy through adolescence, vaccinations, treatment of common conditions, and growth/development monitoring."
+  },
+  "features": [
+    { "ar": "متابعة نمو الرضع والأطفال", "he": "מעקב התפתחות ילדים", "en": "Infant & child growth monitoring" },
+    { "ar": "تطعيمات وفق الجدول الإسرائيلي", "he": "חיסונים", "en": "Vaccinations per Israeli schedule" },
+    { "ar": "علاج الالتهابات والحساسية", "he": "טיפול בדלקות ואלרגיות", "en": "Treatment of infections & allergies" },
+    { "ar": "استشارات تغذية", "he": "ייעוץ תזונה", "en": "Nutrition consultations" },
+    { "ar": "متابعة الأمراض المزمنة", "he": "מעקב מחלות כרוניות", "en": "Chronic condition follow-up" }
+  ],
+  "relatedDoctors": ["mohammad-kabaha"],
+  "free": false
+}

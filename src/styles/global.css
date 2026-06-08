@@ -1,0 +1,128 @@
+@import './fonts.css';
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  html[lang^="ar"] body {
+    font-family: theme('fontFamily.ar');
+  }
+  html[lang^="he"] body {
+    font-family: theme('fontFamily.he');
+  }
+  html[lang^="en"] body {
+    font-family: theme('fontFamily.en');
+  }
+
+  body {
+    @apply text-ink bg-surface antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01", "ss02";
+  }
+
+  /* RTL — flip arrows and directional icons */
+  [dir="rtl"] .icon-flip-rtl {
+    transform: scaleX(-1);
+  }
+
+  /* Improved focus rings for accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-navy;
+  }
+
+  /* Headings — color inherited so sections control their own (dark vs light backgrounds) */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold;
+    letter-spacing: -0.01em;
+    color: inherit;
+  }
+
+  /* Selection color */
+  ::selection {
+    background-color: theme('colors.teal.200');
+    color: theme('colors.navy.500');
+  }
+
+  /* Skip to main content link */
+  .skip-link {
+    @apply sr-only;
+  }
+  .skip-link:focus {
+    @apply not-sr-only fixed top-4 start-4 z-[100] bg-navy text-white px-4 py-2 rounded-md;
+  }
+
+  /* Lazy image placeholder */
+  img[loading="lazy"] {
+    background-color: theme('colors.surface.tint');
+  }
+
+  /* Reduce motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+    html { scroll-behavior: auto; }
+  }
+}
+
+@layer components {
+  .container-wide {
+    @apply container max-w-[1280px];
+  }
+
+  .container-prose {
+    @apply container max-w-3xl;
+  }
+
+  .section {
+    padding-block: var(--space-section);
+  }
+
+  .section-sm {
+    padding-block: var(--space-section-sm);
+  }
+
+  .eyebrow {
+    @apply inline-block text-xs font-semibold uppercase tracking-[0.18em] text-teal-600;
+  }
+
+  /* Visible-on-mobile-only utility */
+  .mobile-only {
+    @apply md:hidden;
+  }
+  .desktop-only {
+    @apply hidden md:block;
+  }
+
+  /* Card hover lift */
+  .card-hover {
+    @apply transition-all duration-200;
+  }
+  .card-hover:hover {
+    box-shadow: var(--shadow-floating);
+    transform: translateY(-2px);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Logical-direction utilities not yet in Tailwind */
+  .ms-auto { margin-inline-start: auto; }
+  .me-auto { margin-inline-end: auto; }
+}

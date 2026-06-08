@@ -1,0 +1,49 @@
+---
+import { useTranslations, type LanguageCode } from '@i18n/utils';
+import Heading from '@components/ui/Heading.astro';
+import Badge from '@components/ui/Badge.astro';
+
+interface Props { lang: LanguageCode; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const funds = [
+  { name: 'Meuhedet', native: 'מאוחדת', native2: 'مأوحيديت', primary: true, color: '#3FB5B5' },
+  { name: 'Clalit', native: 'כללית', native2: 'كلاليت', primary: false, color: '#1A2E5A' },
+  { name: 'Maccabi', native: 'מכבי', native2: 'مكابي', primary: false, color: '#1A2E5A' },
+  { name: 'Leumit', native: 'לאומית', native2: 'لئوميت', primary: false, color: '#1A2E5A' },
+];
+---
+<section class="section-sm bg-white border-y border-surface-tint">
+  <div class="container max-w-[1280px]">
+    <div class="text-center mb-8">
+      <p class="eyebrow">{t('healthFunds.sectionSubtitle')}</p>
+      <h2 class="text-2xl md:text-3xl font-bold text-navy mt-2">{t('healthFunds.sectionTitle')}</h2>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {funds.map((fund) => (
+        <div class:list={['relative rounded-2xl p-5 text-center transition-all', fund.primary ? 'bg-navy text-white shadow-card' : 'bg-surface-alt hover:bg-surface-tint']}>
+          {fund.primary && (
+            <span class="absolute -top-2 start-1/2 -translate-x-1/2 inline-flex">
+              <Badge variant="teal" size="sm" class="bg-teal text-navy">{t('healthFunds.primary')}</Badge>
+            </span>
+          )}
+          <div
+            class="inline-flex items-center justify-center w-14 h-14 rounded-full mx-auto mb-3 text-white font-bold text-lg"
+            style={`background-color: ${fund.color}`}
+            aria-hidden="true"
+          >
+            {fund.name.charAt(0)}
+          </div>
+          <p class:list={['font-bold text-base', fund.primary ? 'text-teal' : 'text-navy']}>
+            {lang === 'he' ? fund.native : lang === 'ar' ? fund.native2 : fund.name}
+          </p>
+          <p class:list={['text-xs mt-0.5', fund.primary ? 'text-white/70' : 'text-ink-subtle']}>
+            {fund.name}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

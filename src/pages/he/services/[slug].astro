@@ -1,0 +1,113 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import PageLayout from '@layouts/PageLayout.astro';
+import Card from '@components/ui/Card.astro';
+import Button from '@components/ui/Button.astro';
+import Icon from '@components/ui/Icon.astro';
+import Badge from '@components/ui/Badge.astro';
+import { useTranslations } from '@i18n/utils';
+import { SITE } from '~/config/site';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  return services.map((service) => ({ params: { slug: service.data.slug }, props: { service } }));
+}
+
+const lang = 'he';
+const t = useTranslations(lang);
+const { service } = Astro.props;
+const data = service.data;
+const relatedDoctors = await Promise.all(
+  data.relatedDoctors.map(async (slug) => { try { return await getEntry('doctors', slug); } catch { return null; } })
+);
+const validDoctors = relatedDoctors.filter(Boolean);
+---
+<PageLayout title={data.title[lang]} description={data.shortDescription[lang]}>
+  <section class="bg-navy text-white">
+    <div class="container max-w-[1280px] py-12 md:py-16">
+      <nav aria-label="breadcrumb" class="text-sm text-white/60 mb-4">
+        <a href={`/${lang}/`} class="hover:text-teal">{t('nav.home')}</a>
+        <span class="mx-2">/</span>
+        <a href={`/${lang}/services/`} class="hover:text-teal">{t('nav.services')}</a>
+      </nav>
+      <div class="flex items-start gap-5">
+        <span class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-teal text-navy flex-shrink-0">
+          <Icon name={data.icon} size={32} />
+        </span>
+        <div>
+          <div class="flex flex-wrap gap-2 mb-2">
+            {data.free && <Badge variant="teal" class="bg-teal text-navy">{t('common.free')}</Badge>}
+            {data.hours && <Badge variant="navy" class="bg-white/20 text-white">{data.hours[lang]}</Badge>}
+          </div>
+          <h1 class="text-3xl md:text-4xl font-bold">{data.title[lang]}</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container max-w-[1280px] grid lg:grid-cols-3 gap-8">
+      <div class="lg:col-span-2 space-y-6">
+        <p class="text-lg leading-relaxed text-ink-muted">{data.longDescription[lang]}</p>
+        {data.features.length > 0 && (
+          <Card variant="tint" padding="lg">
+            <h2 class="text-xl font-bold text-navy mb-4">השירותים הכלולים</h2>
+            <ul class="grid sm:grid-cols-2 gap-3">
+              {data.features.map((feature) => (
+                <li class="flex items-start gap-2">
+                  <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-accent-success/15 text-accent-success flex-shrink-0 mt-0.5">
+                    <Icon name="check" size={14} />
+                  </span>
+                  <span class="text-ink">{feature[lang]}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        )}
+        {validDoctors.length > 0 && (
+          <div>
+            <h2 class="text-xl font-bold text-navy mb-4">{t('doctors.sectionTitle')}</h2>
+            <div class="grid sm:grid-cols-2 gap-4">
+              {validDoctors.map((doctor) => (
+                <Card href={`/${lang}/doctors/${doctor!.data.slug}`} variant="outline" padding="md" hoverable={true}>
+                  <p class="font-bold text-navy">{doctor!.data.name[lang]}</p>
+                  <p class="text-sm text-teal-700">{doctor!.data.specialty[lang]}</p>
+                  {doctor!.data.schedule && <p class="text-xs text-ink-subtle mt-2">{doctor!.data.schedule[lang]}</p>}
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+      <aside class="lg:col-span-1 space-y-4">
+        <Card variant="default" padding="lg">
+          <h3 class="font-bold text-navy mb-3">{t('common.bookNow')}</h3>
+          <p class="text-sm text-ink-muted mb-4">{t('booking.pageSubtitle')}</p>
+          <Button variant="teal" href={`/${lang}/booking?service=${data.slug}`} fullWidth={true}>
+            <Icon name="calendar" size={18} />
+            {t('common.bookNow')}
+          </Button>
+          <div class="mt-3 pt-3 border-t border-surface-tint flex flex-col gap-2">
+            <Button variant="outline" href={SITE.phone.tel} fullWidth={true}>
+              <Icon name="phone" size={16} />
+              <span dir="ltr">{SITE.phone.display}</span>
+            </Button>
+            <Button variant="whatsapp" href={`${SITE.whatsapp.link}?text=${encodeURIComponent(`בירור על שירות: ${data.title[lang]}`)}`} target="_blank" fullWidth={true}>
+              <Icon name="whatsapp" size={16} />
+              {t('common.whatsapp')}
+            </Button>
+          </div>
+        </Card>
+        {data.hours && (
+          <Card variant="tint" padding="md">
+            <div class="flex items-center gap-2 mb-2">
+              <Icon name="clock" size={18} class="text-navy" />
+              <p class="font-bold text-navy">{t('hours.sectionTitle')}</p>
+            </div>
+            <p class="text-sm text-ink">{data.hours[lang]}</p>
+          </Card>
+        )}
+      </aside>
+    </div>
+  </section>
+</PageLayout>

@@ -1,0 +1,8 @@
+{
+  "slug": "abu-abdullah",
+  "order": 1,
+  "photo": "/images/team/abu-abdullah.png",
+  "photoAlt": "أبو عبدالله - موظف الاستقبال في مركز سارة الطبي",
+  "name": { "ar": "أبو عبدالله", "he": "אבו עבדאללה", "en": "Abu Abdullah" },
+  "role": { "ar": "موظف الاستقبال", "he": "פקיד קבלה", "en": "Reception" }
+}

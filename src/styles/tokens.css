@@ -1,0 +1,32 @@
+:root {
+  --color-navy: #1A2E5A;
+  --color-navy-deep: #0F1C36;
+  --color-teal: #3FB5B5;
+  --color-teal-deep: #2E9495;
+  --color-cream: #F4E3C2;
+  --color-cream-soft: #FBF6ED;
+  --color-emergency: #206F70;
+  --color-whatsapp: #25D366;
+
+  --color-ink: #0F172A;
+  --color-ink-muted: #475569;
+  --color-ink-subtle: #64748B;
+  --color-ink-inverse: #F8FAFC;
+
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #FBF6ED;
+  --color-surface-tint: #F2EBE0;
+  --color-surface-deep: #E8DFD0;
+
+  --shadow-card: 0 4px 14px -2px rgb(26 46 90 / 0.08), 0 2px 6px -1px rgb(26 46 90 / 0.04);
+  --shadow-floating: 0 10px 25px -5px rgb(26 46 90 / 0.2), 0 6px 10px -2px rgb(26 46 90 / 0.1);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+
+  --space-section: clamp(3rem, 6vw, 5.5rem);
+  --space-section-sm: clamp(2rem, 4vw, 3rem);
+}

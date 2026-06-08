@@ -1,0 +1,49 @@
+---
+import Icon from '@components/ui/Icon.astro';
+
+interface Props {
+  name: string;       // English name, used to derive initials fallback
+  photo?: string;     // public path to portrait, optional
+  alt: string;
+  size?: 'sm' | 'lg';
+  badgeIcon?: string; // icon shown in the corner badge
+  class?: string;
+}
+const { name, photo, alt, size = 'sm', badgeIcon = 'stethoscope', class: className = '' } = Astro.props;
+
+const initials = name
+  .trim()
+  .split(/\s+/)
+  .filter(Boolean)
+  .slice(0, 2)
+  .map((n) => n.replace(/[^\w֐-׿؀-ۿ]/g, '').charAt(0))
+  .join('');
+
+const wrap = size === 'lg' ? 'w-32 h-32' : 'w-28 h-28';
+const initialsText = size === 'lg' ? 'text-4xl' : 'text-3xl';
+const badgeWrap = size === 'lg' ? 'w-11 h-11' : 'w-9 h-9';
+const badgeIconSize = size === 'lg' ? 20 : 16;
+---
+<div class:list={['relative flex-shrink-0', wrap, className]}>
+  {photo ? (
+    <img
+      src={photo}
+      alt={alt}
+      width="1254"
+      height="1254"
+      loading="lazy"
+      decoding="async"
+      class="absolute inset-0 w-full h-full object-cover object-top rounded-full bg-white ring-2 ring-white shadow-card"
+    />
+  ) : (
+    <Fragment>
+      <div class="absolute inset-0 rounded-full bg-gradient-to-br from-navy to-navy-600"></div>
+      <div class="absolute inset-1 rounded-full bg-white flex items-center justify-center">
+        <span class:list={['font-bold text-navy', initialsText]}>{initials}</span>
+      </div>
+    </Fragment>
+  )}
+  <span class:list={['absolute -bottom-1 -end-1 inline-flex items-center justify-center rounded-full bg-teal text-navy shadow-card', badgeWrap]}>
+    <Icon name={badgeIcon} size={badgeIconSize} />
+  </span>
+</div>

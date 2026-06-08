@@ -1,0 +1,25 @@
+---
+import { useTranslations, type LanguageCode } from '@i18n/utils';
+import { SITE } from '~/config/site';
+import Icon from '@components/ui/Icon.astro';
+
+interface Props { lang: LanguageCode; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+<div class="bg-navy text-white text-sm">
+  <div class="container max-w-[1280px] flex items-center justify-between gap-4 py-2">
+    <div class="flex items-center gap-2 text-white/90">
+      <Icon name="siren" size={16} class="text-teal" />
+      <span class="hidden sm:inline font-medium">{t('hours.emergencyAvailable')}</span>
+    </div>
+    <a
+      href={SITE.phone.tel}
+      class="flex items-center gap-2 font-bold hover:text-teal transition-colors"
+      aria-label={`${t('common.callNow')} ${SITE.phone.display}`}
+    >
+      <Icon name="phone" size={16} />
+      <span dir="ltr">{SITE.phone.display}</span>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '@components/layout/Header.astro';
+import Footer from '@components/layout/Footer.astro';
+import FloatingCTAs from '@components/floating/FloatingCTAs.astro';
+import StickyMobileBar from '@components/floating/StickyMobileBar.astro';
+import { getLangFromUrl, type LanguageCode } from '@i18n/utils';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  publishDate?: Date;
+  modifiedDate?: Date;
+  jsonLdData?: Record<string, unknown>;
+}
+
+const props = Astro.props;
+const lang = (Astro.currentLocale as LanguageCode) ?? getLangFromUrl(Astro.url);
+const pathname = Astro.url.pathname;
+---
+<BaseLayout {...props}>
+  <Header lang={lang} pathname={pathname} />
+  <main id="main" class="flex-1 pb-20 md:pb-0">
+    <slot />
+  </main>
+  <Footer lang={lang} />
+  <FloatingCTAs lang={lang} />
+  <StickyMobileBar lang={lang} />
+</BaseLayout>

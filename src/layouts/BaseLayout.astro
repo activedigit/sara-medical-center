@@ -1,0 +1,81 @@
+---
+import '@styles/global.css';
+import { getLangFromUrl, getDirection, getHtmlLang, type LanguageCode } from '@i18n/utils';
+import { languages } from '@i18n/languages';
+import SEO from '@components/seo/SEO.astro';
+import StructuredData from '@components/seo/StructuredData.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  publishDate?: Date;
+  modifiedDate?: Date;
+  jsonLdData?: Record<string, unknown>;
+}
+
+const { title, description, image, type, noindex, publishDate, modifiedDate, jsonLdData } = Astro.props;
+const lang = (Astro.currentLocale as LanguageCode) ?? getLangFromUrl(Astro.url);
+const dir = getDirection(lang);
+const htmlLang = getHtmlLang(lang);
+---
+
+<!doctype html>
+<html lang={htmlLang} dir={dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0B2545" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <meta name="generator" content={Astro.generator} />
+
+    <SEO
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+      noindex={noindex}
+      publishDate={publishDate}
+      modifiedDate={modifiedDate}
+    />
+    <StructuredData type="organization" data={jsonLdData} />
+
+    <slot name="head" />
+  </head>
+  <body class={`min-h-screen flex flex-col font-${languages[lang].fontVar}`}>
+    <a href="#main" class="skip-link">{lang === 'ar' ? 'تخطّى إلى المحتوى' : lang === 'he' ? 'דלגו לתוכן' : 'Skip to main content'}</a>
+    <slot />
+
+    <script>
+      // Persist language preference for return visits
+      (function () {
+        try {
+          const path = window.location.pathname;
+          const match = path.match(/^\/(ar|he|en)(\/|$)/);
+          if (!match) return;
+          const currentLang = match[1];
+          const stored = localStorage.getItem('saraLang');
+          if (!stored) {
+            localStorage.setItem('saraLang', currentLang);
+            return;
+          }
+          if (stored !== currentLang && !sessionStorage.getItem('langSwitchHandled')) {
+            sessionStorage.setItem('langSwitchHandled', '1');
+            const newPath = path.replace(/^\/(ar|he|en)/, '/' + stored);
+            if (newPath !== path) window.location.replace(newPath + window.location.search);
+          }
+        } catch (e) {
+          /* localStorage unavailable */
+        }
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Hero from '@components/home/Hero.astro';
+import ServicesGrid from '@components/home/ServicesGrid.astro';
+import EmergencyCallout from '@components/home/EmergencyCallout.astro';
+import FeaturedDoctors from '@components/home/FeaturedDoctors.astro';
+import TeamSection from '@components/home/TeamSection.astro';
+import LatestNews from '@components/home/LatestNews.astro';
+import HealthFundsBar from '@components/home/HealthFundsBar.astro';
+import HoursAndLocation from '@components/home/HoursAndLocation.astro';
+import { useTranslations } from '@i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+<PageLayout title={t('siteName')} description={t('tagline')}>
+  <Hero lang={lang} />
+  <ServicesGrid lang={lang} />
+  <EmergencyCallout lang={lang} />
+  <FeaturedDoctors lang={lang} />
+  <TeamSection lang={lang} />
+  <LatestNews lang={lang} />
+  <HealthFundsBar lang={lang} />
+  <HoursAndLocation lang={lang} />
+</PageLayout>

@@ -1,0 +1,68 @@
+---
+import { useTranslations, type LanguageCode } from '@i18n/utils';
+import { SITE } from '~/config/site';
+import Button from '@components/ui/Button.astro';
+import Icon from '@components/ui/Icon.astro';
+
+interface Props { lang: LanguageCode; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const banner = '/images/slider/00-clinic-banner.png';
+---
+<section class="relative overflow-hidden min-h-[460px] md:min-h-[600px] flex items-center text-white">
+  <!-- Full-bleed banner background -->
+  <img
+    src={banner}
+    alt={SITE.name[lang]}
+    fetchpriority="high"
+    decoding="async"
+    class="absolute inset-0 w-full h-full object-cover object-center"
+  />
+  <!-- Legibility scrim (neutral, not navy) -->
+  <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/35 to-black/45" aria-hidden="true"></div>
+
+  <!-- Overlaid content -->
+  <div class="container max-w-[1280px] relative z-10 py-16 md:py-24">
+    <div class="text-center max-w-3xl mx-auto space-y-6 animate-fadeUp">
+      <span class="inline-flex items-center gap-1.5 bg-teal/30 backdrop-blur-sm text-white font-semibold rounded-full px-3 py-1 text-sm border border-teal/40">
+        <Icon name="star" size={14} />
+        {t('hero.eyebrow')}
+      </span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-balance leading-tight [text-shadow:0_2px_12px_rgb(0_0_0_/_55%)]">
+        {t('hero.title')}
+      </h1>
+      <p class="text-lg md:text-xl text-white max-w-2xl mx-auto text-balance leading-relaxed [text-shadow:0_1px_8px_rgb(0_0_0_/_60%)]">
+        {t('hero.subtitle')}
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 pt-2">
+        <Button variant="emergency" size="lg" href={SITE.phone.tel}>
+          <Icon name="phone" size={20} />
+          <span class="flex flex-col items-start leading-tight">
+            <span class="text-xs font-medium opacity-90">{t('hero.ctaCall')}</span>
+            <span dir="ltr" class="font-bold">{SITE.phone.display}</span>
+          </span>
+        </Button>
+        <Button variant="teal" size="lg" href={`/${lang}/booking`}>
+          <Icon name="calendar" size={20} />
+          {t('hero.ctaBook')}
+        </Button>
+      </div>
+      <div class="flex flex-wrap justify-center items-center gap-4 pt-2 text-sm text-white/90 [text-shadow:0_1px_6px_rgb(0_0_0_/_60%)]">
+        <div class="flex items-center gap-2">
+          <Icon name="map-pin" size={16} class="text-teal-200" />
+          <span>{SITE.address.locality}</span>
+        </div>
+        <div class="hidden sm:block w-1 h-1 rounded-full bg-white/50"></div>
+        <div class="flex items-center gap-2">
+          <Icon name="clock" size={16} class="text-teal-200" />
+          <span>{t('hours.emergencyAvailable')}</span>
+        </div>
+        <div class="hidden sm:block w-1 h-1 rounded-full bg-white/50"></div>
+        <div class="flex items-center gap-2">
+          <Icon name="stethoscope" size={16} class="text-teal-200" />
+          <span>{t('hero.trustBadge')}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

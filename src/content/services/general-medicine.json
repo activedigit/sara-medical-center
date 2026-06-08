@@ -1,0 +1,30 @@
+{
+  "slug": "general-medicine",
+  "icon": "stethoscope",
+  "order": 4,
+  "featured": true,
+  "title": {
+    "ar": "فحوصات وعلاجات عامة",
+    "he": "בדיקות וטיפולים כלליים",
+    "en": "General Examinations & Treatments"
+  },
+  "shortDescription": {
+    "ar": "فحوصات طبية شاملة وعلاجات لمختلف الحالات.",
+    "he": "בדיקות רפואיות מקיפות וטיפולים למגוון מצבים.",
+    "en": "Comprehensive medical examinations and treatments for various conditions."
+  },
+  "longDescription": {
+    "ar": "فحوصات سريرية، تحاليل، استشارات طبية عامة، ومتابعة للأمراض المزمنة. نتعامل مع جميع صناديق المرضى بكفاءة وسرعة.",
+    "he": "בדיקות קליניות, בדיקות מעבדה, ייעוץ רפואי כללי ומעקב למחלות כרוניות. אנו עובדים עם כל קופות החולים ביעילות ובמהירות.",
+    "en": "Clinical examinations, laboratory tests, general medical consultations, and follow-up for chronic conditions. We work with all health funds efficiently and quickly."
+  },
+  "features": [
+    { "ar": "فحص سريري شامل", "he": "בדיקה קלינית מקיפה", "en": "Comprehensive clinical exam" },
+    { "ar": "تحاليل دم وبول", "he": "בדיקות דם ושתן", "en": "Blood & urine tests" },
+    { "ar": "متابعة الأمراض المزمنة", "he": "מעקב מחלות כרוניות", "en": "Chronic disease management" },
+    { "ar": "تقارير طبية", "he": "דוחות רפואיים", "en": "Medical reports" },
+    { "ar": "وصفات طبية", "he": "מרשמים", "en": "Prescriptions" }
+  ],
+  "relatedDoctors": [],
+  "free": false
+}

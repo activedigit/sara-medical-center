@@ -1,0 +1,45 @@
+---
+import { useTranslations, type LanguageCode } from '@i18n/utils';
+import { SITE } from '~/config/site';
+import Icon from '@components/ui/Icon.astro';
+
+interface Props { lang: LanguageCode; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const waText = lang === 'ar'
+  ? 'مرحباً، أرغب في الاستفسار'
+  : lang === 'he'
+    ? 'שלום, אני מעוניין לברר'
+    : 'Hello, inquiry';
+const waLink = `${SITE.whatsapp.link}?text=${encodeURIComponent(waText)}`;
+---
+<div class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white border-t border-surface-tint shadow-[0_-4px_20px_rgba(11,37,69,0.08)]" style="padding-bottom: env(safe-area-inset-bottom)">
+  <div class="grid grid-cols-3">
+    <a
+      href={SITE.phone.tel}
+      class="flex flex-col items-center justify-center gap-1 py-3 text-accent-emergency hover:bg-teal-50 active:bg-teal-100 transition-colors"
+      aria-label={`${t('common.callNow')} ${SITE.phone.display}`}
+    >
+      <Icon name="phone" size={22} />
+      <span class="text-xs font-bold">{t('common.callNow')}</span>
+    </a>
+    <a
+      href={waLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="flex flex-col items-center justify-center gap-1 py-3 text-accent-whatsapp hover:bg-green-50 active:bg-green-100 transition-colors border-x border-surface-tint"
+      aria-label={t('common.whatsapp')}
+    >
+      <Icon name="whatsapp" size={22} />
+      <span class="text-xs font-bold">{t('common.whatsapp')}</span>
+    </a>
+    <a
+      href={`/${lang}/booking`}
+      class="flex flex-col items-center justify-center gap-1 py-3 text-teal-700 hover:bg-teal-50 active:bg-teal-100 transition-colors"
+      aria-label={t('common.bookNow')}
+    >
+      <Icon name="calendar" size={22} />
+      <span class="text-xs font-bold">{t('common.bookNow')}</span>
+    </a>
+  </div>
+</div>

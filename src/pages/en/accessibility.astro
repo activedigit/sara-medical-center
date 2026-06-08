@@ -1,0 +1,32 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Heading from '@components/ui/Heading.astro';
+import { useTranslations } from '@i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+<PageLayout title={t('accessibility.pageTitle')} description={t('accessibility.intro')}>
+  <section class="bg-navy text-white">
+    <div class="container max-w-3xl py-10 md:py-14">
+      <Heading level={1} size="lg" align="start">{t('accessibility.pageTitle')}</Heading>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container max-w-3xl space-y-4 text-ink-muted leading-relaxed text-lg">
+      <p>{t('accessibility.intro')}</p>
+      <h2 class="text-2xl font-bold text-navy mt-8">Accessibility Standards</h2>
+      <p>The site is built in accordance with WCAG 2.1 AA standards, including:</p>
+      <ul class="list-disc ps-6 space-y-2">
+        <li>Appropriate color contrast for text (≥ 4.5:1)</li>
+        <li>Base font size ≥ 18 pixels</li>
+        <li>Keyboard navigation</li>
+        <li>Clear labels for buttons and images</li>
+        <li>Screen reader support</li>
+        <li>Page adapts to zoom up to 200%</li>
+      </ul>
+      <h2 class="text-2xl font-bold text-navy mt-8">Report an Accessibility Issue</h2>
+      <p>If you encounter any difficulty using the site, please contact us at 04-884-8080 or via the <a href={`/${lang}/contact`} class="text-teal-700 underline">contact page</a>.</p>
+    </div>
+  </section>
+</PageLayout>

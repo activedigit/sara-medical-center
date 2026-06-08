@@ -1,0 +1,36 @@
+{
+  "slug": "mona-egbariah",
+  "order": 2,
+  "featured": true,
+  "name": {
+    "ar": "د. منى إغبارية",
+    "he": "ד״ר מונא אגבאריה",
+    "en": "Dr. Mona Egbariah"
+  },
+  "specialty": {
+    "ar": "مختصة بمتابعة الحمل والحمل الخطر",
+    "he": "מומחית במעקב הריון והריון בסיכון",
+    "en": "Pregnancy & High-Risk Pregnancy Specialist"
+  },
+  "shortBio": {
+    "ar": "متخصصة في متابعة الحمل العادي والحمل الخطر، ضمن عيادة الإنجليزي للحمل والولادة.",
+    "he": "מומחית במעקב הריון רגיל והריון בסיכון, במסגרת מרפאת האנגלי להריון ולידה.",
+    "en": "Specializes in routine and high-risk pregnancy monitoring as part of the English Clinic for Pregnancy & Childbirth."
+  },
+  "longBio": {
+    "ar": "د. منى إغبارية متخصصة في متابعة الحمل بكافة مراحله، مع تركيز خاص على حالات الحمل الخطر وسكري الحمل. تعمل ضمن عيادة الإنجليزي المرتبطة بمستشفى الإنجليزي في الناصرة، وتستقبل النساء أيام الخميس مجاناً.",
+    "he": "ד״ר מונא אגבאריה מומחית במעקב הריון בכל שלביו, עם דגש מיוחד על מצבי הריון בסיכון וסוכרת הריון. עובדת במסגרת מרפאת האנגלי הקשורה לבית החולים האנגלי בנצרת ומקבלת נשים בימי חמישי חינם.",
+    "en": "Dr. Mona Egbariah specializes in pregnancy monitoring across all stages, with special focus on high-risk pregnancies and gestational diabetes. She works within the English Clinic affiliated with the English Hospital in Nazareth, serving women on Thursdays free of charge."
+  },
+  "credentials": [
+    "MD — High-risk pregnancy specialist",
+    "English Clinic — Nazareth English Hospital"
+  ],
+  "languages": ["ar", "he", "en"],
+  "services": ["womens-health"],
+  "schedule": {
+    "ar": "أيام الخميس 12:30 - 15:30",
+    "he": "ימי חמישי 12:30 - 15:30",
+    "en": "Thursdays 12:30 - 15:30"
+  }
+}

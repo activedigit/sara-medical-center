@@ -1,0 +1,28 @@
+---
+interface Props {
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
+  eyebrow?: string;
+  subtitle?: string;
+  align?: 'start' | 'center';
+  class?: string;
+}
+const { level = 2, size = 'xl', eyebrow, subtitle, align = 'start', class: className = '' } = Astro.props;
+const Tag = `h${level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+const sizeClass = {
+  sm: 'text-2xl',
+  md: 'text-3xl',
+  lg: 'text-4xl',
+  xl: 'text-4xl md:text-5xl',
+  '2xl': 'text-5xl md:text-6xl',
+  '3xl': 'text-5xl md:text-6xl',
+}[size];
+const alignClass = align === 'center' ? 'text-center mx-auto' : '';
+---
+<div class:list={['space-y-3 max-w-3xl', alignClass, className]}>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <Tag class:list={[sizeClass, 'font-bold text-navy text-balance']}>
+    <slot />
+  </Tag>
+  {subtitle && <p class="text-lg md:text-xl text-ink-muted text-pretty">{subtitle}</p>}
+</div>

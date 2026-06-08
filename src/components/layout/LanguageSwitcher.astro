@@ -1,0 +1,81 @@
+---
+import { languages, locales, type LanguageCode } from '@i18n/languages';
+import { useTranslations } from '@i18n/utils';
+import Icon from '@components/ui/Icon.astro';
+
+interface Props { lang: LanguageCode; pathname: string; }
+const { lang, pathname } = Astro.props;
+const t = useTranslations(lang);
+const pathWithoutLocale = pathname.replace(/^\/(ar|he|en)\/?/, '/');
+---
+<div class="relative" data-lang-switcher>
+  <button
+    type="button"
+    class="flex items-center gap-1.5 text-sm font-medium text-ink hover:text-navy px-3 py-2 rounded-lg hover:bg-surface-tint transition-colors"
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-label={t('nav.languageLabel')}
+    data-lang-toggle
+  >
+    <Icon name="globe" size={18} />
+    <span>{languages[lang].nativeName}</span>
+    <Icon name="chevron-down" size={14} />
+  </button>
+  <ul
+    class="absolute end-0 top-full mt-1 min-w-[140px] bg-white shadow-floating rounded-xl py-2 z-50 hidden"
+    data-lang-menu
+    role="menu"
+  >
+    {locales.map((code) => {
+      const targetPath = `/${code}${pathWithoutLocale === '/' ? '/' : pathWithoutLocale}`.replace(/\/\//g, '/');
+      const isCurrent = code === lang;
+      return (
+        <li role="none">
+          <a
+            href={targetPath}
+            class:list={['flex items-center justify-between gap-3 px-4 py-2 text-sm hover:bg-surface-alt', isCurrent && 'font-bold text-navy']}
+            role="menuitem"
+            data-lang-link={code}
+            aria-current={isCurrent ? 'true' : undefined}
+            lang={languages[code].htmlLang}
+            dir={languages[code].dir}
+          >
+            <span>{languages[code].nativeName}</span>
+            {isCurrent && <Icon name="check" size={14} class="text-teal" />}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</div>
+
+<script>
+  document.querySelectorAll('[data-lang-switcher]').forEach((root) => {
+    const toggle = root.querySelector<HTMLButtonElement>('[data-lang-toggle]');
+    const menu = root.querySelector<HTMLUListElement>('[data-lang-menu]');
+    if (!toggle || !menu) return;
+    const close = () => { menu.classList.add('hidden'); toggle.setAttribute('aria-expanded', 'false'); };
+    const open = () => { menu.classList.remove('hidden'); toggle.setAttribute('aria-expanded', 'true'); };
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      menu.classList.contains('hidden') ? open() : close();
+    });
+    document.addEventListener('click', (e) => {
+      if (!root.contains(e.target as Node)) close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+    root.querySelectorAll<HTMLAnchorElement>('[data-lang-link]').forEach((link) => {
+      link.addEventListener('click', () => {
+        try {
+          const code = link.dataset.langLink;
+          if (code) {
+            localStorage.setItem('saraLang', code);
+            sessionStorage.setItem('langSwitchHandled', '1');
+          }
+        } catch (e) { /* ignore */ }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,44 @@
+---
+import { useTranslations, type LanguageCode } from '@i18n/utils';
+import { SITE } from '~/config/site';
+import Button from '@components/ui/Button.astro';
+import Icon from '@components/ui/Icon.astro';
+
+interface Props { lang: LanguageCode; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const waText = lang === 'ar' ? 'حالة طارئة - أحتاج معلومات' : lang === 'he' ? 'מקרה חירום - אני זקוק/ה למידע' : 'Emergency - I need information';
+const waLink = `${SITE.whatsapp.link}?text=${encodeURIComponent(waText)}`;
+---
+<section class="bg-gradient-to-br from-navy via-navy-600 to-navy-700 text-white relative overflow-hidden">
+  <div class="absolute inset-0 opacity-20">
+    <svg viewBox="0 0 1200 200" preserveAspectRatio="none" class="w-full h-full text-teal" aria-hidden="true">
+      <circle cx="100" cy="100" r="80" fill="currentColor" />
+      <circle cx="1100" cy="100" r="120" fill="currentColor" />
+      <circle cx="600" cy="-30" r="100" fill="currentColor" />
+    </svg>
+  </div>
+  <div class="container max-w-[1280px] relative py-10 md:py-12">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-4 text-center md:text-start">
+        <span class="hidden sm:inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/15 flex-shrink-0">
+          <Icon name="siren" size={32} />
+        </span>
+        <div>
+          <h2 class="text-2xl md:text-3xl font-bold">{t('emergencyCallout.title')}</h2>
+          <p class="text-white/90 mt-1 max-w-xl">{t('emergencyCallout.description')}</p>
+        </div>
+      </div>
+      <div class="flex gap-3 flex-shrink-0">
+        <Button variant="emergency" size="lg" href={SITE.phone.tel}>
+          <Icon name="phone" size={20} />
+          <span dir="ltr">{SITE.phone.display}</span>
+        </Button>
+        <Button variant="whatsapp" size="lg" href={waLink} target="_blank">
+          <Icon name="whatsapp" size={20} />
+          <span class="hidden sm:inline">{t('common.whatsapp')}</span>
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>

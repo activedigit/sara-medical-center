@@ -1,0 +1,49 @@
+---
+import { useTranslations, type LanguageCode } from '@i18n/utils';
+import { SITE } from '~/config/site';
+import EmergencyBar from './EmergencyBar.astro';
+import Navigation from './Navigation.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import MobileMenu from './MobileMenu.astro';
+import Button from '@components/ui/Button.astro';
+import Icon from '@components/ui/Icon.astro';
+
+interface Props { lang: LanguageCode; pathname: string; }
+const { lang, pathname } = Astro.props;
+const t = useTranslations(lang);
+---
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-surface-tint">
+  <EmergencyBar lang={lang} />
+  <div class="container max-w-[1280px] flex items-center justify-between gap-4 h-16 md:h-20">
+    <a href={`/${lang}/`} class="flex items-center gap-3" aria-label={SITE.name[lang]}>
+      <img
+        src="/images/logo/sara-logo.jpg"
+        alt={SITE.name[lang]}
+        width="48"
+        height="48"
+        class="w-12 h-12 md:w-14 md:h-14 object-contain rounded-lg"
+        loading="eager"
+      />
+      <div class="flex flex-col leading-tight">
+        <span class="font-bold text-navy text-base md:text-lg">{SITE.shortName[lang]}</span>
+        <span class="text-xs text-ink-subtle hidden sm:inline">{lang === 'ar' ? 'أم الفحم' : lang === 'he' ? 'אום אל-פחם' : 'Umm al-Fahm'}</span>
+      </div>
+    </a>
+
+    <Navigation lang={lang} pathname={pathname} />
+
+    <div class="flex items-center gap-2">
+      <div class="hidden lg:block">
+        <LanguageSwitcher lang={lang} pathname={pathname} />
+      </div>
+      <Button variant="emergency" size="sm" href={SITE.phone.tel} class="hidden md:inline-flex" ariaLabel={`${t('common.callNow')} ${SITE.phone.display}`}>
+        <Icon name="phone" size={16} />
+        <span dir="ltr" class="font-bold">{SITE.phone.display}</span>
+      </Button>
+      <Button variant="teal" size="sm" href={`/${lang}/booking`} class="hidden xl:inline-flex">
+        {t('common.bookNow')}
+      </Button>
+      <MobileMenu lang={lang} pathname={pathname} />
+    </div>
+  </div>
+</header>

@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import { useTranslations, type LanguageCode } from '@i18n/utils';
+import Heading from '@components/ui/Heading.astro';
+import Card from '@components/ui/Card.astro';
+import DoctorAvatar from '@components/doctors/DoctorAvatar.astro';
+
+interface Props { lang: LanguageCode; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const team = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
+---
+{team.length > 0 && (
+  <section class="section bg-surface-alt">
+    <div class="container max-w-[1280px]">
+      <Heading
+        level={2}
+        size="xl"
+        eyebrow={t('team.eyebrow')}
+        subtitle={t('team.sectionSubtitle')}
+        align="center"
+      >
+        {t('team.sectionTitle')}
+      </Heading>
+
+      <div class="flex flex-wrap justify-center gap-5 mt-12">
+        {team.map((member) => (
+          <Card variant="default" padding="lg" class="text-center w-full sm:w-64">
+            <DoctorAvatar
+              name={member.data.name.en}
+              photo={member.data.photo}
+              alt={member.data.photoAlt ?? member.data.name[lang]}
+              size="sm"
+              badgeIcon="user"
+              class="mx-auto mb-4"
+            />
+            <h3 class="text-lg font-bold text-navy">{member.data.name[lang]}</h3>
+            <p class="text-sm text-teal-700 font-semibold mt-1">{member.data.role[lang]}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

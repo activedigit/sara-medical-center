@@ -1,0 +1,77 @@
+---
+import { useTranslations, type LanguageCode } from '@i18n/utils';
+import { SITE } from '~/config/site';
+import GoogleMap from '@components/map/GoogleMap.astro';
+import Heading from '@components/ui/Heading.astro';
+import Icon from '@components/ui/Icon.astro';
+import Badge from '@components/ui/Badge.astro';
+
+interface Props { lang: LanguageCode; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const hourRows = [
+  { label: t('hours.sundayThursday'), value: '08:00 – 22:00' },
+  { label: t('hours.friday'), value: '08:00 – 14:00' },
+  { label: t('hours.saturday'), value: '08:30 – 18:00' },
+];
+---
+<section class="section bg-surface-alt">
+  <div class="container max-w-[1280px]">
+    <Heading level={2} size="xl" subtitle={t('contact.sectionSubtitle')} align="center">
+      {t('hours.sectionTitle')}
+    </Heading>
+
+    <div class="grid lg:grid-cols-5 gap-6 mt-10">
+      <div class="lg:col-span-3 rounded-2xl overflow-hidden shadow-card">
+        <GoogleMap lang={lang} height="460px" rounded={false} />
+      </div>
+
+      <div class="lg:col-span-2 space-y-4">
+        <div class="bg-white rounded-2xl shadow-card p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-navy/5 text-navy">
+              <Icon name="clock" size={20} />
+            </span>
+            <h3 class="font-bold text-navy">{t('hours.sectionTitle')}</h3>
+          </div>
+          <ul class="space-y-2">
+            {hourRows.map((row) => (
+              <li class="flex justify-between text-sm border-b border-surface-tint pb-2 last:border-0 last:pb-0">
+                <span class="text-ink-muted">{row.label}</span>
+                <span class="font-semibold text-ink" dir="ltr">{row.value}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-accent-emergency">
+            <Icon name="siren" size={14} />
+            {t('hours.emergencyAvailable')}
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-card p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-navy/5 text-navy">
+              <Icon name="map-pin" size={20} />
+            </span>
+            <h3 class="font-bold text-navy">{t('contact.addressHeading')}</h3>
+          </div>
+          <p class="text-sm text-ink-muted leading-relaxed">{SITE.address[lang]}</p>
+        </div>
+
+        <div class="bg-navy text-white rounded-2xl shadow-card p-6">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-teal text-navy">
+              <Icon name="phone" size={20} />
+            </span>
+            <h3 class="font-bold">{t('contact.phoneHeading')}</h3>
+          </div>
+          <a href={SITE.phone.tel} class="block text-2xl font-bold hover:text-teal transition-colors" dir="ltr">
+            {SITE.phone.display}
+          </a>
+          <p class="text-xs text-white/70 mt-1">{t('hours.emergencyAvailable')}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

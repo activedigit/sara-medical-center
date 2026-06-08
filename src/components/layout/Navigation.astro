@@ -1,0 +1,42 @@
+---
+import { useTranslations, type LanguageCode } from '@i18n/utils';
+
+interface Props { lang: LanguageCode; pathname: string; orientation?: 'horizontal' | 'vertical'; }
+const { lang, pathname, orientation = 'horizontal' } = Astro.props;
+const t = useTranslations(lang);
+
+const items = [
+  { href: `/${lang}/`, key: 'nav.home' },
+  { href: `/${lang}/about`, key: 'nav.about' },
+  { href: `/${lang}/services/`, key: 'nav.services' },
+  { href: `/${lang}/doctors/`, key: 'nav.doctors' },
+  { href: `/${lang}/news/`, key: 'nav.news' },
+  { href: `/${lang}/insurance`, key: 'nav.insurance' },
+  { href: `/${lang}/contact`, key: 'nav.contact' },
+];
+
+const isActive = (href: string) => {
+  if (href === `/${lang}/`) return pathname === `/${lang}/` || pathname === `/${lang}`;
+  return pathname.startsWith(href.replace(/\/$/, ''));
+};
+
+const baseLink = 'font-medium transition-colors px-3 py-2 rounded-lg';
+const layoutClass = orientation === 'horizontal'
+  ? 'hidden lg:flex items-center gap-1'
+  : 'flex flex-col gap-1';
+---
+<nav aria-label={t('nav.menu')}>
+  <ul class:list={['list-none m-0 p-0', layoutClass]}>
+    {items.map((item) => (
+      <li>
+        <a
+          href={item.href}
+          class:list={[baseLink, isActive(item.href) ? 'text-navy bg-navy/5 font-bold' : 'text-ink hover:text-navy hover:bg-surface-tint']}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+        >
+          {t(item.key)}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>

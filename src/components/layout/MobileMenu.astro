@@ -1,0 +1,85 @@
+---
+import { useTranslations, type LanguageCode } from '@i18n/utils';
+import { SITE } from '~/config/site';
+import Navigation from './Navigation.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import Button from '@components/ui/Button.astro';
+import Icon from '@components/ui/Icon.astro';
+
+interface Props { lang: LanguageCode; pathname: string; }
+const { lang, pathname } = Astro.props;
+const t = useTranslations(lang);
+---
+<button
+  type="button"
+  class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg text-navy hover:bg-surface-tint"
+  aria-label={t('nav.menu')}
+  aria-expanded="false"
+  aria-controls="mobile-menu"
+  data-mobile-toggle
+>
+  <Icon name="menu" size={24} />
+</button>
+
+<div
+  id="mobile-menu"
+  class="lg:hidden fixed inset-0 z-[80] hidden"
+  aria-hidden="true"
+  data-mobile-menu
+>
+  <div class="absolute inset-0 bg-navy/60" data-mobile-backdrop></div>
+  <div class="absolute inset-y-0 end-0 w-[88%] max-w-sm bg-white shadow-floating flex flex-col">
+    <div class="flex items-center justify-between p-4 border-b border-surface-tint">
+      <span class="font-bold text-navy">{t('nav.menu')}</span>
+      <button
+        type="button"
+        class="inline-flex items-center justify-center w-11 h-11 rounded-lg text-navy hover:bg-surface-tint"
+        aria-label={t('nav.close')}
+        data-mobile-close
+      >
+        <Icon name="x" size={24} />
+      </button>
+    </div>
+    <div class="flex-1 overflow-y-auto p-4">
+      <Navigation lang={lang} pathname={pathname} orientation="vertical" />
+      <div class="mt-6 pt-6 border-t border-surface-tint">
+        <LanguageSwitcher lang={lang} pathname={pathname} />
+      </div>
+    </div>
+    <div class="p-4 border-t border-surface-tint grid grid-cols-2 gap-3">
+      <Button variant="emergency" href={SITE.phone.tel} size="md">
+        <Icon name="phone" size={18} />
+        {t('common.callNow')}
+      </Button>
+      <Button variant="teal" href={`/${lang}/booking`} size="md">
+        <Icon name="calendar" size={18} />
+        {t('common.bookNow')}
+      </Button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-mobile-toggle]').forEach((toggle) => {
+    const menu = document.querySelector<HTMLDivElement>('[data-mobile-menu]');
+    const close = document.querySelector<HTMLButtonElement>('[data-mobile-close]');
+    const backdrop = document.querySelector<HTMLDivElement>('[data-mobile-backdrop]');
+    if (!menu) return;
+    const open = () => {
+      menu.classList.remove('hidden');
+      menu.setAttribute('aria-hidden', 'false');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    };
+    const dismiss = () => {
+      menu.classList.add('hidden');
+      menu.setAttribute('aria-hidden', 'true');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    };
+    toggle.addEventListener('click', open);
+    close?.addEventListener('click', dismiss);
+    backdrop?.addEventListener('click', dismiss);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') dismiss(); });
+  });
+</script>

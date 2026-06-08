@@ -1,0 +1,110 @@
+---
+import { getCollection } from 'astro:content';
+import { useTranslations, type LanguageCode } from '@i18n/utils';
+import { SITE } from '~/config/site';
+import FormField from './FormField.astro';
+import FormSelect from './FormSelect.astro';
+import Button from '@components/ui/Button.astro';
+import Icon from '@components/ui/Icon.astro';
+
+interface Props { lang: LanguageCode; preselectedService?: string; preselectedDoctor?: string; }
+const { lang, preselectedService, preselectedDoctor } = Astro.props;
+const t = useTranslations(lang);
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const serviceOptions = services.map((s) => ({ value: s.data.slug, label: s.data.title[lang] }));
+
+const doctors = (await getCollection('doctors')).sort((a, b) => a.data.order - b.data.order);
+const doctorOptions = [
+  { value: '', label: lang === 'ar' ? 'بدون تفضيل' : lang === 'he' ? 'ללא העדפה' : 'No preference' },
+  ...doctors.map((d) => ({ value: d.data.slug, label: d.data.name[lang] })),
+];
+
+const kupahOptions = [
+  { value: 'meuhedet', label: lang === 'ar' ? 'مأوحيديت' : lang === 'he' ? 'מאוחדת' : 'Meuhedet' },
+  { value: 'clalit', label: lang === 'ar' ? 'كلاليت' : lang === 'he' ? 'כללית' : 'Clalit' },
+  { value: 'maccabi', label: lang === 'ar' ? 'مكابي' : lang === 'he' ? 'מכבי' : 'Maccabi' },
+  { value: 'leumit', label: lang === 'ar' ? 'لئوميت' : lang === 'he' ? 'לאומית' : 'Leumit' },
+  { value: 'other', label: lang === 'ar' ? 'أخرى' : lang === 'he' ? 'אחר' : 'Other' },
+];
+
+const timeOptions = [
+  { value: 'morning', label: t('forms.timeMorning') },
+  { value: 'afternoon', label: t('forms.timeAfternoon') },
+  { value: 'evening', label: t('forms.timeEvening') },
+];
+---
+<form
+  name="booking"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  action={`/${lang}/booking?success=1`}
+  class="space-y-5"
+  data-booking-form
+>
+  <input type="hidden" name="form-name" value="booking" />
+  <p class="hidden">
+    <label>{t('forms.required')} <input name="bot-field" /></label>
+  </p>
+
+  <div class="grid sm:grid-cols-2 gap-4">
+    <FormField name="name" label={t('forms.name')} required={true} autocomplete="name" />
+    <FormField name="phone" label={t('forms.phone')} type="tel" required={true} autocomplete="tel" dir="ltr" />
+  </div>
+
+  <div class="grid sm:grid-cols-2 gap-4">
+    <FormSelect name="service" label={t('forms.service')} options={serviceOptions} placeholder={t('forms.selectService')} required={true} defaultValue={preselectedService} />
+    <FormSelect name="doctor" label={t('nav.doctors')} options={doctorOptions} defaultValue={preselectedDoctor} />
+  </div>
+
+  <FormSelect name="kupah" label={t('forms.kupah')} options={kupahOptions} placeholder={t('forms.selectKupah')} />
+
+  <div class="grid sm:grid-cols-2 gap-4">
+    <FormField name="preferredDate" label={t('forms.preferredDate')} type="date" required={true} />
+    <FormSelect name="preferredTime" label={t('forms.preferredTime')} options={timeOptions} required={true} placeholder={t('forms.selectOption')} />
+  </div>
+
+  <FormField name="notes" label={t('forms.notes')} type="textarea" rows={3} />
+
+  <label class="flex items-start gap-2 text-sm text-ink-muted cursor-pointer">
+    <input type="checkbox" name="consent" required class="mt-1 w-4 h-4 rounded border-surface-tint text-navy focus:ring-navy/20" />
+    <span>{t('forms.privacyConsent')}</span>
+  </label>
+
+  <div class="flex flex-col sm:flex-row gap-3">
+    <Button type="submit" variant="teal" size="lg" fullWidth={true}>
+      <Icon name="calendar" size={18} />
+      {t('forms.submitBooking')}
+    </Button>
+    <span class="self-center text-ink-subtle text-sm">{t('forms.or')}</span>
+    <Button variant="whatsapp" size="lg" fullWidth={true} data-whatsapp-trigger>
+      <Icon name="whatsapp" size={18} />
+      {t('forms.sendWhatsapp')}
+    </Button>
+  </div>
+</form>
+
+<script define:vars={{ waBase: SITE.whatsapp.link, lang }}>
+  const form = document.querySelector('[data-booking-form]');
+  const waBtn = form?.querySelector('[data-whatsapp-trigger]');
+  if (form && waBtn) {
+    waBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const labels = {
+        ar: { title: 'حجز موعد جديد', name: 'الاسم', phone: 'الهاتف', service: 'الخدمة', doctor: 'الطبيب', kupah: 'الصندوق', preferredDate: 'التاريخ', preferredTime: 'الفترة', notes: 'ملاحظات' },
+        he: { title: 'הזמנת תור חדש', name: 'שם', phone: 'טלפון', service: 'שירות', doctor: 'רופא', kupah: 'קופה', preferredDate: 'תאריך', preferredTime: 'שעה', notes: 'הערות' },
+        en: { title: 'New appointment booking', name: 'Name', phone: 'Phone', service: 'Service', doctor: 'Doctor', kupah: 'Health Fund', preferredDate: 'Date', preferredTime: 'Time', notes: 'Notes' },
+      }[lang];
+      const fields = ['name', 'phone', 'service', 'doctor', 'kupah', 'preferredDate', 'preferredTime', 'notes'];
+      const lines = [`*${labels.title}*`];
+      fields.forEach((f) => {
+        const v = (data.get(f) || '').toString().trim();
+        if (v) lines.push(`${labels[f]}: ${v}`);
+      });
+      const text = lines.length > 1 ? lines.join('\n') : labels.title;
+      window.open(`${waBase}?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+    });
+  }
+</script>

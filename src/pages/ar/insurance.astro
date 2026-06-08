@@ -1,0 +1,51 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Heading from '@components/ui/Heading.astro';
+import Card from '@components/ui/Card.astro';
+import Badge from '@components/ui/Badge.astro';
+import { useTranslations } from '@i18n/utils';
+
+const lang = 'ar';
+const t = useTranslations(lang);
+
+const funds = [
+  { name: 'Meuhedet', native: 'מאוחדת', native2: 'مأوحيديت', primary: true, color: '#3FB5B5' },
+  { name: 'Clalit', native: 'כללית', native2: 'كلاليت', primary: false, color: '#1A2E5A' },
+  { name: 'Maccabi', native: 'מכבי', native2: 'مكابي', primary: false, color: '#1A2E5A' },
+  { name: 'Leumit', native: 'לאומית', native2: 'لئوميت', primary: false, color: '#1A2E5A' },
+];
+---
+<PageLayout title={t('insurance.pageTitle')} description={t('insurance.pageSubtitle')}>
+  <section class="bg-navy text-white">
+    <div class="container max-w-[1280px] py-12 md:py-16">
+      <Heading level={1} size="xl" eyebrow={t('nav.insurance')} subtitle={t('insurance.pageSubtitle')} align="start">
+        {t('insurance.pageTitle')}
+      </Heading>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container max-w-[1280px]">
+      <p class="text-lg text-ink-muted leading-relaxed max-w-3xl mb-10">{t('insurance.description')}</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {funds.map((fund) => (
+          <Card variant={fund.primary ? 'elevated' : 'outline'} padding="lg" class="relative text-center">
+            {fund.primary && (
+              <span class="absolute -top-2 start-1/2 -translate-x-1/2 inline-flex">
+                <Badge variant="teal" class="bg-teal text-navy">{t('healthFunds.primary')}</Badge>
+              </span>
+            )}
+            <div
+              class="inline-flex items-center justify-center w-16 h-16 rounded-full mx-auto mb-3 text-white font-bold text-xl"
+              style={`background-color: ${fund.color}`}
+              aria-hidden="true"
+            >
+              {fund.name.charAt(0)}
+            </div>
+            <p class="font-bold text-navy">{fund.native2}</p>
+            <p class="text-sm text-ink-subtle">{fund.native} · {fund.name}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+</PageLayout>

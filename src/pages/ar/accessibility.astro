@@ -1,0 +1,32 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Heading from '@components/ui/Heading.astro';
+import { useTranslations } from '@i18n/utils';
+
+const lang = 'ar';
+const t = useTranslations(lang);
+---
+<PageLayout title={t('accessibility.pageTitle')} description={t('accessibility.intro')}>
+  <section class="bg-navy text-white">
+    <div class="container max-w-3xl py-10 md:py-14">
+      <Heading level={1} size="lg" align="start">{t('accessibility.pageTitle')}</Heading>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container max-w-3xl space-y-4 text-ink-muted leading-relaxed text-lg">
+      <p>{t('accessibility.intro')}</p>
+      <h2 class="text-2xl font-bold text-navy mt-8">المعايير المتبعة</h2>
+      <p>تم بناء الموقع وفقاً لمعايير WCAG 2.1 المستوى AA، مع مراعاة:</p>
+      <ul class="list-disc ps-6 space-y-2">
+        <li>تباين لوني مناسب للنصوص (≥ 4.5:1)</li>
+        <li>حجم نص أساسي ≥ 18 بكسل</li>
+        <li>إمكانية التصفح عبر لوحة المفاتيح</li>
+        <li>تسميات واضحة للأزرار والصور</li>
+        <li>دعم قارئات الشاشة</li>
+        <li>تكيّف الصفحة مع التكبير حتى 200%</li>
+      </ul>
+      <h2 class="text-2xl font-bold text-navy mt-8">تواصل في حال وجود مشاكل نفاذية</h2>
+      <p>إذا واجهت أي صعوبة في استخدام الموقع، يرجى الاتصال بنا على 04-884-8080 أو عبر صفحة <a href={`/${lang}/contact`} class="text-teal-700 underline">اتصل بنا</a>.</p>
+    </div>
+  </section>
+</PageLayout>

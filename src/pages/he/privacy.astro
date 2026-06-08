@@ -1,0 +1,28 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Heading from '@components/ui/Heading.astro';
+import { useTranslations } from '@i18n/utils';
+
+const lang = 'he';
+const t = useTranslations(lang);
+---
+<PageLayout title={t('privacy.pageTitle')} description={t('privacy.intro')}>
+  <section class="bg-navy text-white">
+    <div class="container max-w-3xl py-10 md:py-14">
+      <Heading level={1} size="lg" align="start">{t('privacy.pageTitle')}</Heading>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container max-w-3xl space-y-4 text-ink-muted leading-relaxed text-lg">
+      <p>{t('privacy.intro')}</p>
+      <h2 class="text-2xl font-bold text-navy mt-8">איסוף מידע</h2>
+      <p>אנו אוספים מידע אישי שאתם מספקים מרצונכם בעת מילוי טפסי קשר או הזמנת תורים. מידע זה כולל: שם, מספר טלפון, דוא״ל וכל מידע נוסף שתבחרו לשתף.</p>
+      <h2 class="text-2xl font-bold text-navy mt-8">שימוש במידע</h2>
+      <p>אנו משתמשים במידע שלכם רק למטרות יצירת קשר, אישור תורים ומתן שירותים רפואיים. איננו משתפים את הנתונים שלכם עם צדדים שלישיים ללא הסכמתכם המפורשת, למעט הנדרש על פי חוק.</p>
+      <h2 class="text-2xl font-bold text-navy mt-8">הזכויות שלכם</h2>
+      <p>יש לכם זכות לעיין בנתונים שלכם, לערוך אותם או לבקש את מחיקתם בכל עת. ניתן לפנות אלינו בטלפון 04-884-8080.</p>
+      <h2 class="text-2xl font-bold text-navy mt-8">אבטחה</h2>
+      <p>אנו נוקטים באמצעים סבירים להגנת הנתונים שלכם מפני גישה לא מורשית, חשיפה או שינוי.</p>
+    </div>
+  </section>
+</PageLayout>

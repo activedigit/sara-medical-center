@@ -1,0 +1,19 @@
+---
+interface Props {
+  id?: string;
+  variant?: 'default' | 'alt' | 'tint' | 'dark';
+  padding?: 'default' | 'sm' | 'none';
+  class?: string;
+}
+const { id, variant = 'default', padding = 'default', class: className = '' } = Astro.props;
+const variantClass = {
+  default: 'bg-surface',
+  alt: 'bg-surface-alt',
+  tint: 'bg-surface-tint',
+  dark: 'bg-navy text-white',
+}[variant];
+const paddingClass = padding === 'default' ? 'section' : padding === 'sm' ? 'section-sm' : '';
+---
+<section id={id} class:list={[variantClass, paddingClass, className]}>
+  <slot />
+</section>

@@ -1,0 +1,24 @@
+---
+import PageLayout from '@layouts/PageLayout.astro';
+import Button from '@components/ui/Button.astro';
+import Icon from '@components/ui/Icon.astro';
+import { useTranslations } from '@i18n/utils';
+
+const lang = 'ar';
+const t = useTranslations(lang);
+---
+<PageLayout title="404" description="Page not found" noindex={true}>
+  <section class="section">
+    <div class="container max-w-2xl text-center">
+      <p class="text-7xl md:text-9xl font-bold text-navy/10">404</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-navy -mt-4 mb-3">{t('errors.notFound')}</h1>
+      <p class="text-ink-muted mb-8">{t('errors.notFoundDescription')}</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <Button variant="primary" href="/ar/">
+          <Icon name="arrow-end" size={18} class="rotate-180 icon-flip-rtl" />
+          {t('errors.backHome')}
+        </Button>
+      </div>
+    </div>
+  </section>
+</PageLayout>

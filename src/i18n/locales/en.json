@@ -1,0 +1,209 @@
+{
+  "siteName": "Sarah Medical Center",
+  "tagline": "The largest emergency and night medical services center in Umm al-Fahm and the region",
+  "common": {
+    "phone": "04-884-8080",
+    "phoneIntl": "+972-4-884-8080",
+    "address": "City Gate Building, Floor 1, A-Kuds Street, Umm al-Fahm",
+    "addressShort": "City Gate - Umm al-Fahm",
+    "callNow": "Call Now",
+    "whatsapp": "WhatsApp",
+    "bookNow": "Book Appointment",
+    "readMore": "Read more",
+    "viewAll": "View all",
+    "loading": "Loading…",
+    "open": "Open",
+    "closed": "Closed",
+    "free": "Free",
+    "new": "New"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "doctors": "Our Doctors",
+    "news": "News",
+    "insurance": "Health Funds",
+    "contact": "Contact",
+    "booking": "Book Now",
+    "menu": "Menu",
+    "close": "Close",
+    "languageLabel": "Language"
+  },
+  "hero": {
+    "eyebrow": "Certified Medical Center",
+    "title": "Comprehensive medical care, around the clock",
+    "subtitle": "The largest emergency and night medical services center in Umm al-Fahm and the region — with a specialized team serving all health fund members.",
+    "ctaCall": "Call Us Now",
+    "ctaBook": "Book Appointment",
+    "trustBadge": "Directed by Dr. Mohammad Kabaha"
+  },
+  "emergencyCallout": {
+    "title": "Emergency?",
+    "description": "Our medical team is ready to help you anytime. Call now or book through WhatsApp.",
+    "phoneLabel": "Emergency Call"
+  },
+  "services": {
+    "sectionTitle": "Our Medical Services",
+    "sectionSubtitle": "Integrated services to the highest professional and human standards",
+    "viewService": "Service Details",
+    "emergency": {
+      "title": "Emergency Room",
+      "short": "Advanced 24/7 emergency services with a specialized medical team.",
+      "long": "A modern emergency room equipped with the latest medical technology, receiving urgent cases at all hours. We provide rapid examinations, immediate treatments, and follow-up for cases requiring further care."
+    },
+    "pediatrics": {
+      "title": "Pediatrics",
+      "short": "Comprehensive pediatric clinic led by Dr. Mohammad Kabaha — Pediatrics specialist.",
+      "long": "Specialized pediatric clinic directed by Dr. Mohammad Kabaha — Director of Pediatric Medicine at Meuhedet North. We offer comprehensive care from infancy through adolescence, vaccinations, treatment of common conditions, and growth/development monitoring."
+    },
+    "womensHealth": {
+      "title": "English Clinic — Pregnancy & Women's Health",
+      "short": "Comprehensive women's services — free for all women, every Thursday.",
+      "long": "In partnership with the English Hospital in Nazareth, we provide pregnancy monitoring, high-risk pregnancy care, gestational diabetes management, childbirth preparation courses, lactation consulting, and nutrition/exercise guidance — free of charge for all women, regardless of insurance.",
+      "schedule": "Thursdays 12:30 - 15:30"
+    },
+    "general": {
+      "title": "General Examinations & Treatments",
+      "short": "Comprehensive medical examinations and treatments for various conditions.",
+      "long": "Clinical examinations, laboratory tests, general medical consultations, and follow-up for chronic conditions. We work with all health funds efficiently and quickly."
+    }
+  },
+  "doctors": {
+    "sectionTitle": "Our Medical Team",
+    "sectionSubtitle": "Highly experienced doctors and specialists at your service",
+    "viewProfile": "View Profile",
+    "specialty": "Specialty",
+    "languages": "Languages",
+    "credentials": "Credentials"
+  },
+  "team": {
+    "eyebrow": "In good hands",
+    "sectionTitle": "Our Team",
+    "sectionSubtitle": "The team that welcomes and serves you"
+  },
+  "news": {
+    "sectionTitle": "Latest News & Announcements",
+    "sectionSubtitle": "Updates and announcements from Sarah Medical Center",
+    "readArticle": "Read article",
+    "publishedOn": "Published on",
+    "noArticles": "No news yet",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page"
+  },
+  "healthFunds": {
+    "sectionTitle": "We serve all health fund members",
+    "sectionSubtitle": "In partnership with all Israeli health funds",
+    "primary": "Our primary partner"
+  },
+  "hours": {
+    "sectionTitle": "Hours & Location",
+    "sundayThursday": "Sunday - Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "days": {
+      "sun": "Sunday",
+      "mon": "Monday",
+      "tue": "Tuesday",
+      "wed": "Wednesday",
+      "thu": "Thursday",
+      "fri": "Friday",
+      "sat": "Saturday"
+    },
+    "emergencyAvailable": "24/7 emergency service",
+    "directions": "Get directions"
+  },
+  "forms": {
+    "name": "Full Name",
+    "phone": "Phone Number",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "service": "Service",
+    "preferredDate": "Preferred Date",
+    "preferredTime": "Preferred Time",
+    "notes": "Additional Notes",
+    "kupah": "Health Fund",
+    "selectOption": "Select…",
+    "selectService": "Select a service",
+    "selectKupah": "Select a health fund",
+    "timeMorning": "Morning (8:00 - 12:00)",
+    "timeAfternoon": "Afternoon (12:00 - 17:00)",
+    "timeEvening": "Evening (17:00 - 21:00)",
+    "submit": "Send",
+    "submitBooking": "Book Now",
+    "sendWhatsapp": "Send via WhatsApp",
+    "or": "or",
+    "required": "Required",
+    "privacyConsent": "I agree to the processing of my data in accordance with the privacy policy",
+    "successTitle": "Your request was received",
+    "successMessage": "Our team will contact you soon to confirm the details.",
+    "errorMessage": "An error occurred. Please try again or contact us directly."
+  },
+  "contact": {
+    "sectionTitle": "Contact Us",
+    "sectionSubtitle": "We're here to answer your questions",
+    "phoneHeading": "Phone",
+    "addressHeading": "Address",
+    "hoursHeading": "Hours",
+    "emailHeading": "Email",
+    "formHeading": "Send us a message",
+    "formDescription": "For general questions and inquiries. For emergencies, please call directly."
+  },
+  "booking": {
+    "pageTitle": "Book an Appointment",
+    "pageSubtitle": "Easily book your appointment via the form — we'll contact you to confirm.",
+    "instructionsTitle": "Before booking",
+    "instructions": [
+      "Booking does not guarantee the appointment until confirmed by our staff.",
+      "For emergencies, please call 04-884-8080 directly.",
+      "Bring your ID and health fund card."
+    ]
+  },
+  "about": {
+    "pageTitle": "About Sarah Medical Center",
+    "pageSubtitle": "Comprehensive medical care at international standards in the heart of Umm al-Fahm",
+    "missionTitle": "Our Mission",
+    "missionText": "We strive to provide excellent medical services to the highest professional and human standards — including emergency and specialized care for all members of the Arab community in Umm al-Fahm and the region.",
+    "visionTitle": "Our Vision",
+    "visionText": "To be the leading medical center trusted by residents in the area, reaching every home through our diverse services and specialized team.",
+    "valuesTitle": "Our Values",
+    "values": {
+      "professionalism": "Professionalism",
+      "professionalismText": "We adhere to the highest medical and ethical standards.",
+      "compassion": "Compassion",
+      "compassionText": "We treat every patient with respect and human attention.",
+      "accessibility": "Accessibility",
+      "accessibilityText": "Services for all, regardless of health fund."
+    }
+  },
+  "insurance": {
+    "pageTitle": "Accepted Health Funds",
+    "pageSubtitle": "We serve members of all Israeli health funds",
+    "description": "Sarah Medical Center accepts insurance from all kupot cholim. Examinations and treatments are covered according to each fund's policy."
+  },
+  "accessibility": {
+    "pageTitle": "Accessibility Statement",
+    "intro": "Sarah Medical Center is committed to providing an accessible website to all users, including people with disabilities, in accordance with the Equal Rights for Persons with Disabilities (Service Accessibility Adjustments) Regulations, 2013."
+  },
+  "privacy": {
+    "pageTitle": "Privacy Policy",
+    "intro": "We respect your privacy and are committed to protecting your personal data in accordance with the Israeli Privacy Protection Law."
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "contactInfo": "Contact Info",
+    "hours": "Hours",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved",
+    "designedBy": "Designed & developed by",
+    "privacyPolicy": "Privacy Policy",
+    "accessibility": "Accessibility"
+  },
+  "errors": {
+    "notFound": "Page not found",
+    "notFoundDescription": "Sorry, the page you're looking for isn't available.",
+    "backHome": "Back to home"
+  }
+}
