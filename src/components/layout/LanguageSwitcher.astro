@@ -1,12 +1,12 @@
 ---
 import { languages, locales, type LanguageCode } from '@i18n/languages';
-import { useTranslations } from '@i18n/utils';
+import { useTranslations, withBase, stripBase } from '@i18n/utils';
 import Icon from '@components/ui/Icon.astro';
 
 interface Props { lang: LanguageCode; pathname: string; }
 const { lang, pathname } = Astro.props;
 const t = useTranslations(lang);
-const pathWithoutLocale = pathname.replace(/^\/(ar|he|en)\/?/, '/');
+const pathWithoutLocale = stripBase(pathname).replace(/^\/(ar|he|en)\/?/, '/');
 ---
 <div class="relative" data-lang-switcher>
   <button
@@ -27,7 +27,7 @@ const pathWithoutLocale = pathname.replace(/^\/(ar|he|en)\/?/, '/');
     role="menu"
   >
     {locales.map((code) => {
-      const targetPath = `/${code}${pathWithoutLocale === '/' ? '/' : pathWithoutLocale}`.replace(/\/\//g, '/');
+      const targetPath = withBase(`/${code}${pathWithoutLocale === '/' ? '/' : pathWithoutLocale}`.replace(/\/\//g, '/'));
       const isCurrent = code === lang;
       return (
         <li role="none">

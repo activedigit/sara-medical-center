@@ -1,6 +1,6 @@
 ---
 import { SITE } from '~/config/site';
-import { getLangFromUrl, getAlternateUrls, getHtmlLang, type LanguageCode } from '@i18n/utils';
+import { getLangFromUrl, getAlternateUrls, getHtmlLang, withBase, stripBase, type LanguageCode } from '@i18n/utils';
 import { languages } from '@i18n/languages';
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
 
 const { title, description, image, type = 'website', noindex = false, publishDate, modifiedDate } = Astro.props;
 const lang = (Astro.currentLocale as LanguageCode) ?? getLangFromUrl(Astro.url);
-const ogImage = image ? new URL(image, Astro.site).toString() : new URL(SITE.defaultOgImage, Astro.site).toString();
+const ogImage = image ? new URL(withBase(image), Astro.site).toString() : new URL(SITE.defaultOgImage, Astro.site).toString();
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 const alternates = getAlternateUrls(Astro.url.pathname, SITE.url);
 const siteName = SITE.name[lang];
@@ -32,7 +32,7 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
 {alternates.map(({ lang: altLang, url }) => (
   <link rel="alternate" hreflang={getHtmlLang(altLang)} href={url} />
 ))}
-<link rel="alternate" hreflang="x-default" href={`${SITE.url}/ar${Astro.url.pathname.replace(/^\/(ar|he|en)/, '')}`} />
+<link rel="alternate" hreflang="x-default" href={`${SITE.url}/ar${stripBase(Astro.url.pathname).replace(/^\/(ar|he|en)/, '')}`} />
 
 <!-- Open Graph -->
 <meta property="og:type" content={type} />

@@ -7,7 +7,7 @@ import Icon from '@components/ui/Icon.astro';
 interface Props { lang: LanguageCode; }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const banner = '/images/slider/00-clinic-banner.png';
+const banner = `${import.meta.env.BASE_URL}images/slider/00-clinic-banner.png`;
 ---
 <section class="relative overflow-hidden min-h-[460px] md:min-h-[600px] flex items-center text-white">
   <!-- Full-bleed banner background -->
@@ -42,7 +42,7 @@ const banner = '/images/slider/00-clinic-banner.png';
             <span dir="ltr" class="font-bold">{SITE.phone.display}</span>
           </span>
         </Button>
-        <Button variant="teal" size="lg" href={`/${lang}/booking`}>
+        <Button variant="teal" size="lg" href={`${import.meta.env.BASE_URL}${lang}/booking`}>
           <Icon name="calendar" size={20} />
           {t('hero.ctaBook')}
         </Button>

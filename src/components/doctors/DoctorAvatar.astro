@@ -1,5 +1,6 @@
 ---
 import Icon from '@components/ui/Icon.astro';
+import { withBase } from '@i18n/utils';
 
 interface Props {
   name: string;       // English name, used to derive initials fallback
@@ -27,7 +28,7 @@ const badgeIconSize = size === 'lg' ? 20 : 16;
 <div class:list={['relative flex-shrink-0', wrap, className]}>
   {photo ? (
     <img
-      src={photo}
+      src={withBase(photo)}
       alt={alt}
       width="1254"
       height="1254"

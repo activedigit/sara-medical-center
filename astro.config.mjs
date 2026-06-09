@@ -3,7 +3,8 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://saramedical.co.il',
+  site: 'https://activedigit.github.io',
+  base: '/sara-medical-center',
   trailingSlash: 'ignore',
   integrations: [
     tailwind({ applyBaseStyles: false }),

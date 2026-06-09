@@ -14,7 +14,7 @@ const slug = post.slug.replace(/^[a-z]+\//, '');
 const localeCode = lang === 'ar' ? 'ar-EG' : lang === 'he' ? 'he-IL' : 'en-US';
 const formattedDate = new Intl.DateTimeFormat(localeCode, { year: 'numeric', month: 'long', day: 'numeric' }).format(post.data.publishDate);
 ---
-<Card href={`/${lang}/news/${slug}`} variant="outline" padding="md" hoverable={true} class="h-full flex flex-col group">
+<Card href={`${import.meta.env.BASE_URL}${lang}/news/${slug}`} variant="outline" padding="md" hoverable={true} class="h-full flex flex-col group">
   <NewsCover cover={post.data.cover} alt={post.data.heroImageAlt ?? post.data.title} />
   <div class="flex flex-wrap gap-2 mb-3">
     {post.data.featured && <Badge variant="teal" size="sm">{t('common.new')}</Badge>}

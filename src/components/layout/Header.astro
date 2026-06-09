@@ -15,9 +15,9 @@ const t = useTranslations(lang);
 <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-surface-tint">
   <EmergencyBar lang={lang} />
   <div class="container max-w-[1280px] flex items-center justify-between gap-4 h-16 md:h-20">
-    <a href={`/${lang}/`} class="flex items-center gap-3" aria-label={SITE.name[lang]}>
+    <a href={`${import.meta.env.BASE_URL}${lang}/`} class="flex items-center gap-3" aria-label={SITE.name[lang]}>
       <img
-        src="/images/logo/sara-logo.jpg"
+        src={`${import.meta.env.BASE_URL}images/logo/sara-logo.jpg`}
         alt={SITE.name[lang]}
         width="48"
         height="48"
@@ -40,7 +40,7 @@ const t = useTranslations(lang);
         <Icon name="phone" size={16} />
         <span dir="ltr" class="font-bold">{SITE.phone.display}</span>
       </Button>
-      <Button variant="teal" size="sm" href={`/${lang}/booking`} class="hidden xl:inline-flex">
+      <Button variant="teal" size="sm" href={`${import.meta.env.BASE_URL}${lang}/booking`} class="hidden xl:inline-flex">
         {t('common.bookNow')}
       </Button>
       <MobileMenu lang={lang} pathname={pathname} />

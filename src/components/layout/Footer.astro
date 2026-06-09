@@ -9,12 +9,12 @@ const t = useTranslations(lang);
 const year = 2026;
 
 const quickLinks = [
-  { href: `/${lang}/about`, key: 'nav.about' },
-  { href: `/${lang}/services/`, key: 'nav.services' },
-  { href: `/${lang}/doctors/`, key: 'nav.doctors' },
-  { href: `/${lang}/insurance`, key: 'nav.insurance' },
-  { href: `/${lang}/news/`, key: 'nav.news' },
-  { href: `/${lang}/booking`, key: 'nav.booking' },
+  { href: `${import.meta.env.BASE_URL}${lang}/about`, key: 'nav.about' },
+  { href: `${import.meta.env.BASE_URL}${lang}/services/`, key: 'nav.services' },
+  { href: `${import.meta.env.BASE_URL}${lang}/doctors/`, key: 'nav.doctors' },
+  { href: `${import.meta.env.BASE_URL}${lang}/insurance`, key: 'nav.insurance' },
+  { href: `${import.meta.env.BASE_URL}${lang}/news/`, key: 'nav.news' },
+  { href: `${import.meta.env.BASE_URL}${lang}/booking`, key: 'nav.booking' },
 ];
 
 const hours = [
@@ -29,7 +29,7 @@ const hours = [
       <div class="space-y-4">
         <div class="flex items-center gap-3">
           <span class="inline-flex items-center justify-center w-16 h-16 rounded-xl bg-white p-1">
-            <img src="/images/logo/sara-logo.jpg" alt={SITE.name[lang]} class="w-full h-full object-contain rounded-md" />
+            <img src={`${import.meta.env.BASE_URL}images/logo/sara-logo.jpg`} alt={SITE.name[lang]} class="w-full h-full object-contain rounded-md" />
           </span>
           <div>
             <p class="font-bold text-lg">{SITE.shortName[lang]}</p>
@@ -97,8 +97,8 @@ const hours = [
     <div class="container max-w-[1280px] py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-white/60">
       <p>© {year} {SITE.name[lang]}. {t('footer.rights')}.</p>
       <ul class="flex gap-4">
-        <li><a href={`/${lang}/privacy`} class="hover:text-teal">{t('footer.privacyPolicy')}</a></li>
-        <li><a href={`/${lang}/accessibility`} class="hover:text-teal">{t('footer.accessibility')}</a></li>
+        <li><a href={`${import.meta.env.BASE_URL}${lang}/privacy`} class="hover:text-teal">{t('footer.privacyPolicy')}</a></li>
+        <li><a href={`${import.meta.env.BASE_URL}${lang}/accessibility`} class="hover:text-teal">{t('footer.accessibility')}</a></li>
       </ul>
     </div>
   </div>

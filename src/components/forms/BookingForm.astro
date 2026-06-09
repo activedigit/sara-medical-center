@@ -39,7 +39,7 @@ const timeOptions = [
   method="POST"
   data-netlify="true"
   netlify-honeypot="bot-field"
-  action={`/${lang}/booking?success=1`}
+  action={`${import.meta.env.BASE_URL}${lang}/booking?success=1`}
   class="space-y-5"
   data-booking-form
 >

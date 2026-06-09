@@ -26,7 +26,7 @@ const t = useTranslations(lang);
         <li>تكيّف الصفحة مع التكبير حتى 200%</li>
       </ul>
       <h2 class="text-2xl font-bold text-navy mt-8">تواصل في حال وجود مشاكل نفاذية</h2>
-      <p>إذا واجهت أي صعوبة في استخدام الموقع، يرجى الاتصال بنا على 04-884-8080 أو عبر صفحة <a href={`/${lang}/contact`} class="text-teal-700 underline">اتصل بنا</a>.</p>
+      <p>إذا واجهت أي صعوبة في استخدام الموقع، يرجى الاتصال بنا على 04-884-8080 أو عبر صفحة <a href={`${import.meta.env.BASE_URL}${lang}/contact`} class="text-teal-700 underline">اتصل بنا</a>.</p>
     </div>
   </section>
 </PageLayout>

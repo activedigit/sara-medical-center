@@ -24,7 +24,7 @@ const services = (await getCollection('services')).sort((a, b) => a.data.order -
     <div class="container max-w-[1280px]">
       <div class="grid gap-5 md:grid-cols-2">
         {services.map((service) => (
-          <Card href={`/${lang}/services/${service.data.slug}`} variant="outline" padding="lg" hoverable={true} class="group h-full flex flex-col">
+          <Card href={`${import.meta.env.BASE_URL}${lang}/services/${service.data.slug}`} variant="outline" padding="lg" hoverable={true} class="group h-full flex flex-col">
             <div class="flex items-start justify-between mb-4">
               <span class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-navy/5 text-navy group-hover:bg-navy group-hover:text-teal transition-colors">
                 <Icon name={service.data.icon} size={28} />

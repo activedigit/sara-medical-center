@@ -1,5 +1,6 @@
 export const SITE = {
-  url: 'https://saramedical.co.il',
+  // Origin + base path of the current deployment (GitHub Pages project subpath)
+  url: 'https://activedigit.github.io/sara-medical-center',
   name: {
     ar: 'مركز سارة الطبي',
     he: 'מרכז שארה לרפואה דחופה',
@@ -44,5 +45,5 @@ export const SITE = {
     { day: 'fri', label: 'friday', open: '08:00', close: '14:00' },
     { day: 'sat', label: 'saturday', open: '08:30', close: '18:00' },
   ] as const,
-  defaultOgImage: '/og-image.jpg',
+  defaultOgImage: '/sara-medical-center/og-image.jpg',
 } as const;

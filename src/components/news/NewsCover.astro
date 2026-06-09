@@ -1,5 +1,6 @@
 ---
 import Icon from '@components/ui/Icon.astro';
+import { withBase } from '@i18n/utils';
 
 interface Props {
   cover?: string;
@@ -7,16 +8,17 @@ interface Props {
   class?: string;
 }
 const { cover, alt, class: className = '' } = Astro.props;
+const coverSrc = cover ? withBase(cover) : undefined;
 ---
 <div class:list={['aspect-[16/9] -m-6 mb-4 rounded-t-2xl overflow-hidden relative bg-gradient-to-br from-navy to-navy-700', className]}>
   {cover ? (
     <Fragment>
       <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <img src={cover} alt="" class="w-full h-full object-cover scale-125 blur-2xl opacity-50" />
+        <img src={coverSrc} alt="" class="w-full h-full object-cover scale-125 blur-2xl opacity-50" />
         <div class="absolute inset-0 bg-navy/40"></div>
       </div>
       <img
-        src={cover}
+        src={coverSrc}
         alt={alt}
         loading="lazy"
         decoding="async"

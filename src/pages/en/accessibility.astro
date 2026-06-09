@@ -26,7 +26,7 @@ const t = useTranslations(lang);
         <li>Page adapts to zoom up to 200%</li>
       </ul>
       <h2 class="text-2xl font-bold text-navy mt-8">Report an Accessibility Issue</h2>
-      <p>If you encounter any difficulty using the site, please contact us at 04-884-8080 or via the <a href={`/${lang}/contact`} class="text-teal-700 underline">contact page</a>.</p>
+      <p>If you encounter any difficulty using the site, please contact us at 04-884-8080 or via the <a href={`${import.meta.env.BASE_URL}${lang}/contact`} class="text-teal-700 underline">contact page</a>.</p>
     </div>
   </section>
 </PageLayout>

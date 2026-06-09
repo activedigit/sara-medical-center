@@ -6,17 +6,17 @@ const { lang, pathname, orientation = 'horizontal' } = Astro.props;
 const t = useTranslations(lang);
 
 const items = [
-  { href: `/${lang}/`, key: 'nav.home' },
-  { href: `/${lang}/about`, key: 'nav.about' },
-  { href: `/${lang}/services/`, key: 'nav.services' },
-  { href: `/${lang}/doctors/`, key: 'nav.doctors' },
-  { href: `/${lang}/news/`, key: 'nav.news' },
-  { href: `/${lang}/insurance`, key: 'nav.insurance' },
-  { href: `/${lang}/contact`, key: 'nav.contact' },
+  { href: `${import.meta.env.BASE_URL}${lang}/`, key: 'nav.home' },
+  { href: `${import.meta.env.BASE_URL}${lang}/about`, key: 'nav.about' },
+  { href: `${import.meta.env.BASE_URL}${lang}/services/`, key: 'nav.services' },
+  { href: `${import.meta.env.BASE_URL}${lang}/doctors/`, key: 'nav.doctors' },
+  { href: `${import.meta.env.BASE_URL}${lang}/news/`, key: 'nav.news' },
+  { href: `${import.meta.env.BASE_URL}${lang}/insurance`, key: 'nav.insurance' },
+  { href: `${import.meta.env.BASE_URL}${lang}/contact`, key: 'nav.contact' },
 ];
 
 const isActive = (href: string) => {
-  if (href === `/${lang}/`) return pathname === `/${lang}/` || pathname === `/${lang}`;
+  if (href === `${import.meta.env.BASE_URL}${lang}/`) return pathname === `${import.meta.env.BASE_URL}${lang}/` || pathname === `${import.meta.env.BASE_URL}${lang}`;
   return pathname.startsWith(href.replace(/\/$/, ''));
 };
 

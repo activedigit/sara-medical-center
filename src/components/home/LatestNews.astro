@@ -35,7 +35,7 @@ const formatDate = (date: Date) => {
 
       <div class="grid gap-6 md:grid-cols-3 mt-12">
         {newsPosts.map((post) => (
-          <Card href={`/${lang}/news/${post.slug.replace(/^[a-z]+\//, '')}`} variant="outline" padding="md" hoverable={true} class="h-full flex flex-col">
+          <Card href={`${import.meta.env.BASE_URL}${lang}/news/${post.slug.replace(/^[a-z]+\//, '')}`} variant="outline" padding="md" hoverable={true} class="h-full flex flex-col">
             <NewsCover cover={post.data.cover} alt={post.data.heroImageAlt ?? post.data.title} />
             <div class="flex flex-wrap gap-2 mb-3">
               {post.data.featured && <Badge variant="teal" size="sm">{t('common.new')}</Badge>}
@@ -57,7 +57,7 @@ const formatDate = (date: Date) => {
       </div>
 
       <div class="text-center mt-10">
-        <a href={`/${lang}/news/`} class="inline-flex items-center gap-2 text-navy font-semibold hover:gap-3 transition-all">
+        <a href={`${import.meta.env.BASE_URL}${lang}/news/`} class="inline-flex items-center gap-2 text-navy font-semibold hover:gap-3 transition-all">
           <span>{t('common.viewAll')}</span>
           <Icon name="arrow-end" size={18} />
         </a>
