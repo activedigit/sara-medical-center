@@ -16,7 +16,7 @@ const t = useTranslations(lang);
   <h2 class="text-2xl font-bold text-navy mb-2">{t('forms.successTitle')}</h2>
   <p class="text-ink-muted">{t('forms.successMessage')}</p>
   <div class="mt-6 flex flex-wrap justify-center gap-3">
-    <Button variant="primary" href={`${import.meta.env.BASE_URL}${lang}/`}>
+    <Button variant="primary" href={`${import.meta.env.BASE_URL}/${lang}/`}>
       <Icon name="arrow-end" size={16} class="rotate-180 icon-flip-rtl" />
       {t('errors.backHome')}
     </Button>

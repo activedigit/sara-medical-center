@@ -15,7 +15,7 @@ export async function GET(context: APIContext) {
       title: post.data.title,
       pubDate: post.data.publishDate,
       description: post.data.excerpt,
-      link: `${import.meta.env.BASE_URL}ar/news/${post.slug.replace(/^ar\//, '')}/`,
+      link: `${import.meta.env.BASE_URL}/ar/news/${post.slug.replace(/^ar\//, '')}/`,
     })),
     customData: '<language>ar</language>',
   });

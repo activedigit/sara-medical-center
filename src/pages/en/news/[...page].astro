@@ -34,7 +34,7 @@ const { page } = Astro.props;
           {page.data.map((post) => <NewsCard post={post} lang={lang} />)}
         </div>
       )}
-      <Pagination lang={lang} page={{ current: page.currentPage, total: page.lastPage, size: page.size }} urls={{ prev: page.url.prev, next: page.url.next }} basePath={`${import.meta.env.BASE_URL}${lang}/news`} />
+      <Pagination lang={lang} page={{ current: page.currentPage, total: page.lastPage, size: page.size }} urls={{ prev: page.url.prev, next: page.url.next }} basePath={`${import.meta.env.BASE_URL}/${lang}/news`} />
     </div>
   </section>
 </PageLayout>
