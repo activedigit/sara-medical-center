@@ -8,89 +8,64 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 
 type L = { ar: string; he: string; en: string };
-interface Tip { cat: string; img: string; href: string; title: L; desc: L; }
+interface Tip { img: string; href: string; title: L; desc: L; }
 
 const ui = {
   eyebrow: { ar: 'مركز سارة يهتم بصحتك', he: 'מרכז שארה דואג לבריאותכם', en: 'We care about your health' },
   title: { ar: 'نصائح وإرشادات صحية', he: 'טיפים והכוונה לבריאות', en: 'Health Tips & Guidance' },
   subtitle: { ar: 'مواضيع توعوية من فريقنا الطبي لمختلف الفئات', he: 'תכנים מקצועיים מהצוות הרפואי שלנו לכל המשפחה', en: 'Awareness topics from our medical team for the whole family' },
   readMore: { ar: 'اقرأ المزيد', he: 'קראו עוד', en: 'Read more' },
-  all: { ar: 'الكل', he: 'הכל', en: 'All' },
 };
-
-const categories = [
-  { key: 'prevention', label: { ar: 'الوقاية والمناعة', he: 'מניעה וחיסון', en: 'Prevention' } },
-  { key: 'pediatrics', label: { ar: 'صحة الأطفال', he: 'בריאות הילד', en: 'Pediatrics' } },
-  { key: 'ortho', label: { ar: 'العظام والمفاصل', he: 'עצמות ומפרקים', en: 'Orthopedics' } },
-  { key: 'mental', label: { ar: 'الصحة النفسية', he: 'בריאות הנפש', en: 'Mental Health' } },
-  { key: 'seasonal', label: { ar: 'صحة موسمية', he: 'בריאות עונתית', en: 'Seasonal' } },
-];
 
 const tips: Tip[] = [
   {
-    cat: 'prevention', img: '/images/tips/immunity.jpg', href: `/${lang}/services/general-medicine`,
+    img: '/images/tips/immunity.jpg', href: `/${lang}/services/general-medicine`,
     title: { ar: 'فيتامينات لمناعة قوية', he: 'ויטמינים לחיסון חזק', en: 'Vitamins for strong immunity' },
     desc: { ar: 'كيف تعزّز مناعتك بالتغذية السليمة خلال موسم البرد والإنفلونزا.', he: 'כיצד לחזק את מערכת החיסון בתזונה נכונה בעונת הקור.', en: 'Boost your immunity with proper nutrition during the cold and flu season.' },
   },
   {
-    cat: 'ortho', img: '/images/tips/ortho.jpg', href: `/${lang}/services/emergency`,
+    img: '/images/tips/ortho.jpg', href: `/${lang}/services/emergency`,
     title: { ar: 'صحة العظام والمفاصل', he: 'בריאות עצמות ומפרקים', en: 'Bone & joint health' },
     desc: { ar: 'نصائح للوقاية من إصابات العظام والعناية بالمفاصل بعد الإصابة.', he: 'טיפים למניעת פציעות עצם וטיפול נכון במפרקים.', en: 'Tips to prevent bone injuries and care for your joints after an injury.' },
   },
   {
-    cat: 'pediatrics', img: '/images/tips/pediatrics.jpg', href: `/${lang}/services/pediatrics`,
+    img: '/images/tips/pediatrics.jpg', href: `/${lang}/services/pediatrics`,
     title: { ar: 'متابعة نمو طفلك', he: 'מעקב אחר התפתחות ילדכם', en: "Your child's growth" },
     desc: { ar: 'أهمية الفحوصات الدورية لمتابعة صحة ونمو الأطفال في كل مرحلة.', he: 'חשיבות הבדיקות התקופתיות למעקב אחר בריאות והתפתחות הילד.', en: 'The importance of regular check-ups to follow your child’s health and growth.' },
   },
   {
-    cat: 'mental', img: '/images/tips/mental-health.jpg', href: `/${lang}/booking`,
+    img: '/images/tips/mental-health.jpg', href: `/${lang}/booking`,
     title: { ar: 'العناية بالصحة النفسية', he: 'טיפוח הבריאות הנפשית', en: 'Caring for mental health' },
     desc: { ar: 'الاهتمام بالصحة النفسية ليس رفاهية — متى تطلب الدعم والمشورة.', he: 'הטיפול בבריאות הנפש אינו מותרות — מתי לפנות לתמיכה.', en: 'Mental wellbeing is not a luxury — when to seek support and advice.' },
   },
   {
-    cat: 'seasonal', img: '/images/tips/allergy.jpg', href: `/${lang}/services/general-medicine`,
+    img: '/images/tips/allergy.jpg', href: `/${lang}/services/general-medicine`,
     title: { ar: 'التعامل مع الحساسية الموسمية', he: 'התמודדות עם אלרגיה עונתית', en: 'Managing seasonal allergies' },
     desc: { ar: 'أعراض الحساسية الموسمية وطرق الوقاية منها والتعامل معها.', he: 'תסמיני האלרגיה העונתית ודרכים למנוע ולהתמודד.', en: 'Symptoms of seasonal allergies and how to prevent and manage them.' },
   },
   {
-    cat: 'prevention', img: '/images/tips/kids-immunity.jpg', href: `/${lang}/services/pediatrics`,
+    img: '/images/tips/kids-immunity.jpg', href: `/${lang}/services/pediatrics`,
     title: { ar: 'مناعة قوية لأطفالك', he: 'חיסון חזק לילדים', en: 'Strong immunity for kids' },
     desc: { ar: 'عادات صحية بسيطة تحمي أطفالك وتقوّي مناعتهم طوال العام.', he: 'הרגלים בריאים פשוטים שיגנו על ילדיכם ויחזקו את חיסונם.', en: 'Simple healthy habits that protect your kids and strengthen their immunity.' },
   },
 ];
+
+// Duplicate the list so the marquee can loop seamlessly (-50% == one full set).
+const loop = [...tips, ...tips];
 ---
-<section class="section bg-surface-alt" data-tips>
+<section class="section bg-surface-alt overflow-hidden">
   <div class="container max-w-[1280px]">
     <Heading level={2} size="xl" eyebrow={ui.eyebrow[lang]} subtitle={ui.subtitle[lang]} align="center">
       {ui.title[lang]}
     </Heading>
+  </div>
 
-    <!-- Category filter -->
-    <div class="flex flex-wrap justify-center gap-2 mt-8" role="tablist" aria-label={ui.title[lang]}>
-      <button
-        type="button"
-        data-filter="all"
-        data-active
-        class="px-4 py-2 rounded-full text-sm font-semibold border border-surface-tint bg-white text-ink hover:border-teal transition-colors data-[active]:bg-navy data-[active]:text-white data-[active]:border-navy"
-      >
-        {ui.all[lang]}
-      </button>
-      {categories.map((c) => (
-        <button
-          type="button"
-          data-filter={c.key}
-          class="px-4 py-2 rounded-full text-sm font-semibold border border-surface-tint bg-white text-ink hover:border-teal transition-colors data-[active]:bg-navy data-[active]:text-white data-[active]:border-navy"
-        >
-          {c.label[lang]}
-        </button>
-      ))}
-    </div>
-
-    <!-- Cards -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 mt-12">
-      {tips.map((tip) => (
-        <article data-cat={tip.cat} class="group">
-          <a href={withBase(tip.href)} class="block focus-visible:outline-none">
+  <!-- Auto-scrolling single-row marquee -->
+  <div class="tips-viewport relative mt-10">
+    <div class="tips-track flex gap-6 w-max px-4">
+      {loop.map((tip, i) => (
+        <article class="group shrink-0 w-[290px] flex flex-col" aria-hidden={i >= tips.length ? 'true' : undefined}>
+          <a href={withBase(tip.href)} class="flex flex-col h-full focus-visible:outline-none" tabindex={i >= tips.length ? -1 : undefined}>
             <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-card relative bg-navy-700">
               <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
                 <img src={withBase(tip.img)} alt="" class="w-full h-full object-cover scale-125 blur-2xl opacity-50" />
@@ -104,15 +79,15 @@ const tips: Tip[] = [
                 class="relative z-[1] w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
               />
             </div>
-            <div class="relative mx-3 -mt-10 bg-white rounded-2xl shadow-card p-5 pt-7">
+            <div class="relative mx-3 -mt-10 bg-white rounded-2xl shadow-card p-5 pt-7 flex-1 flex flex-col">
               <span
                 class="absolute -top-5 start-5 inline-flex w-11 h-11 rounded-full bg-teal text-navy items-center justify-center shadow-floating group-hover:bg-teal-600 group-hover:text-white transition-colors"
                 aria-hidden="true"
               >
                 <Icon name="arrow-end" size={18} class="rotate-180 icon-flip-rtl" />
               </span>
-              <h3 class="font-bold text-navy text-lg mt-1 mb-1.5 group-hover:text-teal-700 transition-colors">{tip.title[lang]}</h3>
-              <p class="text-sm text-ink-muted leading-relaxed line-clamp-2">{tip.desc[lang]}</p>
+              <h3 class="font-bold text-navy text-lg mt-1 mb-1.5 group-hover:text-teal-700 transition-colors line-clamp-1">{tip.title[lang]}</h3>
+              <p class="text-sm text-ink-muted leading-relaxed line-clamp-2 flex-1">{tip.desc[lang]}</p>
               <span class="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-teal-700">
                 {ui.readMore[lang]}
                 <Icon name="arrow-end" size={12} />
@@ -122,22 +97,27 @@ const tips: Tip[] = [
         </article>
       ))}
     </div>
+    <!-- Edge fades -->
+    <div class="pointer-events-none absolute inset-y-0 start-0 w-12 md:w-20 bg-gradient-to-r from-surface-alt to-transparent z-10"></div>
+    <div class="pointer-events-none absolute inset-y-0 end-0 w-12 md:w-20 bg-gradient-to-l from-surface-alt to-transparent z-10"></div>
   </div>
 </section>
 
-<script>
-  document.querySelectorAll<HTMLElement>('[data-tips]').forEach((root) => {
-    const pills = Array.from(root.querySelectorAll<HTMLElement>('[data-filter]'));
-    const cards = Array.from(root.querySelectorAll<HTMLElement>('[data-cat]'));
-    pills.forEach((pill) => {
-      pill.addEventListener('click', () => {
-        const filter = pill.dataset.filter;
-        pills.forEach((p) => (p === pill ? p.setAttribute('data-active', '') : p.removeAttribute('data-active')));
-        cards.forEach((card) => {
-          const show = filter === 'all' || card.dataset.cat === filter;
-          card.style.display = show ? '' : 'none';
-        });
-      });
-    });
-  });
-</script>
+<style>
+  @keyframes tips-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .tips-track {
+    animation: tips-marquee 45s linear infinite;
+    will-change: transform;
+  }
+  .tips-viewport:hover .tips-track,
+  .tips-viewport:focus-within .tips-track {
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tips-track { animation: none; }
+    .tips-viewport { overflow-x: auto; }
+  }
+</style>
