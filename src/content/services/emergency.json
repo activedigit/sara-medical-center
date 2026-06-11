@@ -9,9 +9,9 @@
     "en": "Emergency Room"
   },
   "shortDescription": {
-    "ar": "خدمات طوارئ متقدمة على مدار الساعة بطاقم طبي متخصص.",
-    "he": "שירותי חירום מתקדמים 24/7 על ידי צוות רפואי מומחה.",
-    "en": "Advanced 24/7 emergency services with a specialized medical team."
+    "ar": "خدمات طوارئ متقدمة بطاقم طبي متخصص.",
+    "he": "שירותי חירום מתקדמים על ידי צוות רפואי מומחה.",
+    "en": "Advanced emergency services with a specialized medical team."
   },
   "longDescription": {
     "ar": "غرفة طوارئ حديثة مجهزة بأحدث التقنيات الطبية، تستقبل الحالات العاجلة في جميع الأوقات. نوفر فحوصات سريعة، علاجات فورية، ومتابعة للحالات التي تتطلب رعاية إضافية. أكبر مركز طوارئ ليلي في أم الفحم والمنطقة.",
@@ -19,9 +19,9 @@
     "en": "A modern emergency room equipped with the latest medical technology, receiving urgent cases at all hours. We provide rapid examinations, immediate treatments, and follow-up for cases requiring further care. The largest nighttime emergency center in Umm al-Fahm and the region."
   },
   "hours": {
-    "ar": "خدمة على مدار الساعة 24/7",
-    "he": "שירות 24/7",
-    "en": "24/7 service"
+    "ar": "خدمات طوارئ مسائية وليلية",
+    "he": "שירותי חירום בערב ובלילה",
+    "en": "Evening & night emergency services"
   },
   "features": [
     { "ar": "فحوصات سريعة", "he": "בדיקות מהירות", "en": "Rapid examinations" },

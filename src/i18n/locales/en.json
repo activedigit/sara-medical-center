@@ -49,7 +49,7 @@
     "viewService": "Service Details",
     "emergency": {
       "title": "Emergency Room",
-      "short": "Advanced 24/7 emergency services with a specialized medical team.",
+      "short": "Advanced emergency services with a specialized medical team.",
       "long": "A modern emergency room equipped with the latest medical technology, receiving urgent cases at all hours. We provide rapid examinations, immediate treatments, and follow-up for cases requiring further care."
     },
     "pediatrics": {
@@ -111,7 +111,7 @@
       "fri": "Friday",
       "sat": "Saturday"
     },
-    "emergencyAvailable": "24/7 emergency service",
+    "emergencyAvailable": "Emergency service",
     "directions": "Get directions"
   },
   "forms": {
