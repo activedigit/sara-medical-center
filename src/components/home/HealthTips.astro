@@ -61,8 +61,8 @@ const loop = [...tips, ...tips, ...tips, ...tips];
     </Heading>
   </div>
 
-  <!-- Auto-scrolling single-row marquee -->
-  <div class="tips-viewport relative mt-10">
+  <!-- Auto-scrolling single-row marquee (LTR viewport so the track anchors left and never leaves a gap) -->
+  <div class="tips-viewport relative mt-10" dir="ltr">
     <div class="tips-track flex w-max" dir="ltr">
       {loop.map((tip, i) => (
         <article class="group shrink-0 w-[290px] mr-6 flex flex-col" dir={lang === 'en' ? 'ltr' : 'rtl'} aria-hidden={i >= tips.length ? 'true' : undefined}>
