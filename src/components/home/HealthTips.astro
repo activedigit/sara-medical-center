@@ -63,9 +63,9 @@ const loop = [...tips, ...tips, ...tips, ...tips];
 
   <!-- Auto-scrolling single-row marquee -->
   <div class="tips-viewport relative mt-10">
-    <div class="tips-track flex w-max">
+    <div class="tips-track flex w-max" dir="ltr">
       {loop.map((tip, i) => (
-        <article class="group shrink-0 w-[290px] me-6 flex flex-col" aria-hidden={i >= tips.length ? 'true' : undefined}>
+        <article class="group shrink-0 w-[290px] mr-6 flex flex-col" dir={lang === 'en' ? 'ltr' : 'rtl'} aria-hidden={i >= tips.length ? 'true' : undefined}>
           <a href={withBase(tip.href)} class="flex flex-col h-full focus-visible:outline-none" tabindex={i >= tips.length ? -1 : undefined}>
             <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-card relative bg-navy-700">
               <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
