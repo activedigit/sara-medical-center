@@ -3,6 +3,7 @@ import PageLayout from '@layouts/PageLayout.astro';
 import Hero from '@components/home/Hero.astro';
 import ServicesGrid from '@components/home/ServicesGrid.astro';
 import EmergencyCallout from '@components/home/EmergencyCallout.astro';
+import HealthTips from '@components/home/HealthTips.astro';
 import FeaturedDoctors from '@components/home/FeaturedDoctors.astro';
 import TeamSection from '@components/home/TeamSection.astro';
 import LatestNews from '@components/home/LatestNews.astro';
@@ -17,6 +18,7 @@ const t = useTranslations(lang);
   <Hero lang={lang} />
   <ServicesGrid lang={lang} />
   <EmergencyCallout lang={lang} />
+  <HealthTips lang={lang} />
   <FeaturedDoctors lang={lang} />
   <TeamSection lang={lang} />
   <LatestNews lang={lang} />
