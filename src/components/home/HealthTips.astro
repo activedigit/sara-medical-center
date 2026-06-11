@@ -65,9 +65,9 @@ const loop = [...tips, ...tips, ...tips, ...tips];
   <div class="tips-viewport relative mt-10" dir="ltr">
     <div class="tips-track flex w-max" dir="ltr">
       {loop.map((tip, i) => (
-        <article class="group shrink-0 w-[290px] mr-6 flex flex-col" dir={lang === 'en' ? 'ltr' : 'rtl'} aria-hidden={i >= tips.length ? 'true' : undefined}>
-          <a href={withBase(tip.href)} class="flex flex-col h-full focus-visible:outline-none" tabindex={i >= tips.length ? -1 : undefined}>
-            <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-card relative bg-navy-700">
+        <article class="group shrink-0 w-[290px] mr-6 flex" dir={lang === 'en' ? 'ltr' : 'rtl'} aria-hidden={i >= tips.length ? 'true' : undefined}>
+          <a href={withBase(tip.href)} class="flex flex-col w-full bg-white rounded-3xl shadow-card overflow-hidden hover:shadow-cardHover transition-shadow focus-visible:outline-none" tabindex={i >= tips.length ? -1 : undefined}>
+            <div class="aspect-[4/3] relative bg-navy-700 overflow-hidden">
               <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
                 <img src={withBase(tip.img)} alt="" class="w-full h-full object-cover scale-125 blur-2xl opacity-50" />
                 <div class="absolute inset-0 bg-navy/30"></div>
@@ -80,18 +80,14 @@ const loop = [...tips, ...tips, ...tips, ...tips];
                 class="relative z-[1] w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
               />
             </div>
-            <div class="relative mx-3 -mt-10 bg-white rounded-2xl shadow-card p-5 pt-7 flex-1 flex flex-col">
-              <span
-                class="absolute -top-5 start-5 inline-flex w-11 h-11 rounded-full bg-teal text-navy items-center justify-center shadow-floating group-hover:bg-teal-600 group-hover:text-white transition-colors"
-                aria-hidden="true"
-              >
-                <Icon name="arrow-end" size={18} class="rotate-180 icon-flip-rtl" />
-              </span>
-              <h3 class="font-bold text-navy text-lg mt-1 mb-1.5 group-hover:text-teal-700 transition-colors line-clamp-1">{tip.title[lang]}</h3>
+            <div class="p-5 flex flex-col flex-1">
+              <h3 class="font-bold text-navy text-lg mb-2 group-hover:text-teal-700 transition-colors line-clamp-1">{tip.title[lang]}</h3>
               <p class="text-sm text-ink-muted leading-relaxed line-clamp-2 flex-1">{tip.desc[lang]}</p>
-              <span class="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-teal-700">
+              <span class="inline-flex items-center gap-2 mt-4 text-sm font-semibold text-teal-700">
+                <span class="inline-flex w-7 h-7 rounded-full bg-teal/15 items-center justify-center group-hover:bg-teal group-hover:text-navy transition-colors">
+                  <Icon name="arrow-end" size={14} class="rotate-180 icon-flip-rtl" />
+                </span>
                 {ui.readMore[lang]}
-                <Icon name="arrow-end" size={12} />
               </span>
             </div>
           </a>
