@@ -24,7 +24,7 @@ const organizationJsonLd = {
   address: {
     '@type': 'PostalAddress',
     streetAddress: SITE.address.street,
-    addressLocality: SITE.address.locality,
+    addressLocality: SITE.address.locality[lang],
     addressRegion: 'Haifa District',
     addressCountry: SITE.address.country,
   },

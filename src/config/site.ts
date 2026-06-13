@@ -26,7 +26,7 @@ export const SITE = {
     he: 'בניין שער העיר, קומה 1, רחוב אל-קודס, אום אל-פחם',
     en: 'City Gate Building, Floor 1, A-Kuds Street, Umm al-Fahm',
     street: 'A-Kuds Street, City Gate Building, Floor 1',
-    locality: 'Umm al-Fahm',
+    locality: { ar: 'أم الفحم', he: 'אום אל-פחם', en: 'Umm al-Fahm' },
     country: 'IL',
   },
   geo: {

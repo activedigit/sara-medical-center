@@ -50,7 +50,7 @@ const banner = `${import.meta.env.BASE_URL}/images/slider/00-clinic-banner.png`;
       <div class="flex flex-wrap justify-center items-center gap-4 pt-2 text-sm text-white/90 [text-shadow:0_1px_6px_rgb(0_0_0_/_60%)]">
         <div class="flex items-center gap-2">
           <Icon name="map-pin" size={16} class="text-teal-200" />
-          <span>{SITE.address.locality}</span>
+          <span>{SITE.address.locality[lang]}</span>
         </div>
         <div class="hidden sm:block w-1 h-1 rounded-full bg-white/50"></div>
         <div class="flex items-center gap-2">
