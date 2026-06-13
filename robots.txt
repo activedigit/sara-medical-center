@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://activedigit.github.io/sara-medical-center/sitemap-index.xml
